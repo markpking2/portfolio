@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Community Calendar",
+    "description": "description goes here",
+    "image": "testpic.webp"
+  },
+  {
+    "name": "Dev Desk",
+    "description": "description goes here",
+    "image": "testpic.webp"
+  },
+  {
+    "name": "Ride For Life",
+    "description": "description goes here",
+    "image": "testpic.webp"
+  },
+  {
+    "name": "Empowered Conversation",
+    "description": "description goes here",
+    "image": "testpic.webp"
+  },
+  {
+    "name": "Create Your Own Adventure",
+    "description": "description goes here",
+    "image": "testpic.webp"
+  }
+]
