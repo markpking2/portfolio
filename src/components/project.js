@@ -13,6 +13,7 @@ const StyledImg = styled(Img)`
   margin: 0;
   min-width: ${({ maxWidth }) => maxWidth}%;
   max-height: 750px;
+  padding: 0 0.3rem;
 `
 
 const StyledLinkIcon = styled(LinkIcon)`
