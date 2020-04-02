@@ -6,12 +6,15 @@ import resume from "../assets/resume.pdf"
 
 const LayoutDiv = styled.div`
   margin: 3rem auto 0 auto;
-  max-width: 650px;
-  padding: 0 1rem;
+  max-width: 950px;
+  padding: 0 3rem;
 
   h1,
-  h3 {
+  h2 {
     display: inline;
+  }
+  h4 {
+    margin: 0.5rem;
   }
 `
 
@@ -85,26 +88,26 @@ export default ({ children }) => (
     <Content>
       <Header>
         <StyledLink id="name" to="/">
-          <h1>mark king</h1>
+          <h1>Mark King</h1>
         </StyledLink>
         <Icons>
           <li>
-            <a href={resume} target="blank">
+            <a href={resume}>
               <Resume />
             </a>
           </li>
           <li>
-            <a href="https://github.com/markpkng" target="blank">
+            <a href="https://github.com/markpkng">
               <Github textDecoration="none" />
             </a>
           </li>
           <li>
-            <a href="https://linkedin.com/in/markpking" target="blank">
+            <a href="https://linkedin.com/in/markpking">
               <Linkedin />
             </a>
           </li>
           <li>
-            <a href="mailto:markpkng@gmail.com" target="blank">
+            <a href="mailto:markpkng@gmail.com">
               <Email />
             </a>
           </li>
@@ -117,7 +120,7 @@ export default ({ children }) => (
             About
           </StyledLink>
           <StyledLink
-            to="/projects"
+            to="/projects/"
             activeStyle={{ color: "hsla(0,0%,0%,0.9)", fontWeight: "bold" }}
           >
             Projects

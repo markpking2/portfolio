@@ -6,6 +6,8 @@
 
 module.exports = {
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {
@@ -34,7 +36,5 @@ module.exports = {
         name: `images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
   ],
 }

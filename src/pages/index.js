@@ -4,7 +4,7 @@ import Typewriter from "../components/typewriter"
 
 export default () => (
   <Layout>
-    <Typewriter text="hello" />
+    <Typewriter text="Hello" />
     <p>
       I'm a 25 year old software developer. I have experience building full
       stack web applications on several cross functional teams primarily with
