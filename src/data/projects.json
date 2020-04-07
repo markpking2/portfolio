@@ -79,7 +79,7 @@
   },
   {
     "name": "Empowered Conversation",
-    "description": "A user can send an anonymous text message to someone with materials to prepare them for a difficul conversation.  When the recipient has completed viewing the educational materials, the user will be notified that the recipient is ready to have a conversation.",
+    "description": "A user can send an anonymous text message to someone with materials to prepare them for a difficult conversation.  When the recipient has completed viewing the educational materials, the user will be notified that the recipient is ready to have a conversation.",
     "tech": "React, Node.js/Express, Twilio",
     "demo": "https://empoweredconversation-bw.netlify.com/",
     "frontend": "https://github.com/Build-Week-Empowered-Conversations/Front-End",
