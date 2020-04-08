@@ -20,13 +20,12 @@ const StyledImg = styled(Img)`
 
 const ImgWrapper = styled.div`
     margin-top: 30px;
+    margin-bottom: 50px;
 `;
 
 export default ({ data }) => {
     const [image] = data.Image.edges;
     const {
-        relativePath,
-        name,
         childImageSharp: { sizes },
     } = image.node;
     return (
@@ -62,11 +61,9 @@ export default ({ data }) => {
 
 export const query = graphql`
     query image {
-        Image: allFile(filter: { relativePath: { regex: "/boat_dogs.jpg/" } }) {
+        Image: allFile(filter: { relativePath: { regex: "/boat_dogs.png/" } }) {
             edges {
                 node {
-                    relativePath
-                    name
                     childImageSharp {
                         sizes(maxWidth: 950) {
                             ...GatsbyImageSharpSizes
