@@ -39,9 +39,11 @@ export default ({ data }) => {
                 <Typewriter text='Hello' />
                 <P>
                     I'm a full stack web developer with experience working on
-                    diverse cross functional teams primarily with JavaScript and
-                    Python, using technologies such as React, Redux, Node.js,
-                    Express, Django, PostgreSQL, Apollo, and GraphQL.
+                    diverse cross functional teams with Data Scientists, Mobile
+                    Developers, and UX/UI Designers. I work primarily with
+                    JavaScript and Python, using technologies such as React,
+                    Redux, Node.js, Express, Django, PostgreSQL, Apollo, and
+                    GraphQL.
                 </P>
                 <P>
                     Outside of programming you might find me reading a book or
