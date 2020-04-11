@@ -26,7 +26,7 @@ const ImgWrapper = styled.div`
 export default ({ data }) => {
     const [image] = data.Image.edges;
     const {
-        childImageSharp: { sizes },
+        childImageSharp: { sizes }
     } = image.node;
     return (
         <>
@@ -36,7 +36,7 @@ export default ({ data }) => {
                 <link rel='canonical' href='https://mark.codes' />
             </Helmet>
             <Layout>
-                <Typewriter text='Hello' />
+                <Typewriter text='Hello :)' />
                 <P>
                     I'm a full stack web developer with experience working on
                     diverse cross functional teams with Data Scientists, Mobile
