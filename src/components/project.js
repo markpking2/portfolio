@@ -72,7 +72,7 @@ const RepoDiv = styled.div`
     }
 `;
 
-export default ({ sizes, project, images }) => {
+export default ({ sizes, project, touched, setTouched, index }) => {
     const ref = useRef();
     const [dimensions, setDimensions] = useState({});
     useLayoutEffect(() => {
@@ -89,7 +89,14 @@ export default ({ sizes, project, images }) => {
                 <h2>{project.name}</h2>
             )}
             <div ref={ref}>
-                <Carousel top={dimensions.height / 2 - 22} left={55} right={55}>
+                <Carousel
+                    top={dimensions.height / 2 - 22}
+                    left={55}
+                    right={55}
+                    touched={touched}
+                    setTouched={setTouched}
+                    index={index}
+                >
                     {sizes.map((size, i) => (
                         <StyledImg
                             title={project.name}

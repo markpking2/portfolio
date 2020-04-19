@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/layout";
 import Typewriter from "../components/typewriter";
 import Project from "../components/project";
@@ -6,6 +6,7 @@ import projectList from "../data/projects.json";
 import Helmet from "react-helmet";
 
 export default ({ data }) => {
+    const [touched, setTouched] = useState(false);
     const { edges: projectImages } = data.ProjectImages;
     return (
         <>
@@ -17,7 +18,7 @@ export default ({ data }) => {
             <Layout>
                 <Typewriter text='Projects' />
                 {projectList &&
-                    projectList.map((project) => {
+                    projectList.map((project, i) => {
                         const images = projectImages.filter((image, i) => {
                             return project.images.includes(
                                 image.node.relativePath
@@ -26,11 +27,13 @@ export default ({ data }) => {
                         return (
                             <Project
                                 key={project.name}
-                                images={images}
                                 sizes={images.map(
                                     (image) => image.node.childImageSharp.sizes
                                 )}
                                 project={project}
+                                touched={touched}
+                                setTouched={setTouched}
+                                index={i}
                             />
                         );
                     })}

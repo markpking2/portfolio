@@ -34,6 +34,11 @@ const StyledLink = styled(Link)`
     background-image: none;
     margin-top: 1rem;
     padding: 0.5rem;
+    ${({ isCurrent }) =>
+        isCurrent &&
+        `
+        color: white
+    `}
 `;
 
 const Icons = styled.ul`
@@ -51,8 +56,8 @@ const Icons = styled.ul`
     }
 
     svg {
-        width: 1.8rem;
-        height: 1.8rem;
+        min-width: 1.8rem;
+        min-height: 1.8rem;
 
         &:hover {
             opacity: 0.5;
@@ -77,6 +82,18 @@ const Links = styled.div`
     }
     }
   }
+  .active {
+      font-size: 1.5rem;
+      color: white;
+      background: none;
+      text-shadow: none;
+      font-family: "Work Sans",sans-serif;
+      pointer-events: none;
+
+      &:hover {
+          opacity: 1
+      }
+  }
 `;
 const Content = styled.div`
     min-height: calc(100vh - 125px);
@@ -88,6 +105,10 @@ const Footer = styled.footer`
     text-align: center;
 `;
 
+const isActive = ({ isCurrent }) => {
+    return isCurrent ? { className: "active" } : {};
+};
+
 export default ({ children }) => (
     <LayoutDiv>
         <Content>
@@ -98,45 +119,35 @@ export default ({ children }) => (
                 <Icons>
                     <li>
                         <a href={resume}>
-                            <Resume fill='rgba(102, 252, 241, 1)' />
+                            <Resume fill='red' />
                         </a>
                     </li>
                     <li>
                         <a href='https://github.com/markpkng'>
-                            <Github
-                                fill='rgba(102, 252, 241, 1)'
-                                textDecoration='none'
-                            />
+                            <Github fill='white' textDecoration='none' />
                         </a>
                     </li>
                     <li>
                         <a href='https://linkedin.com/in/markpking'>
-                            <Linkedin fill='rgba(102, 252, 241, 1)' />
+                            <Linkedin
+                                style={{
+                                    background: "white",
+                                    borderRadius: "6px",
+                                }}
+                            />
                         </a>
                     </li>
                     <li>
-                        <a href='mailto:markpkng@gmail.com'>
-                            <Email fill='rgba(102, 252, 241, 1)' />
+                        <a href='mailto:mark@mark.codes'>
+                            <Email fill='white' />
                         </a>
                     </li>
                 </Icons>
                 <Links>
-                    <StyledLink
-                        to='/'
-                        activeStyle={{
-                            color: "#ffffff",
-                            fontWeight: "bold",
-                        }}
-                    >
+                    <StyledLink to='/' getProps={isActive}>
                         About
                     </StyledLink>
-                    <StyledLink
-                        to='/projects/'
-                        activeStyle={{
-                            color: "#ffffff",
-                            fontWeight: "bold",
-                        }}
-                    >
+                    <StyledLink to='/projects/' getProps={isActive}>
                         Projects
                     </StyledLink>
                 </Links>

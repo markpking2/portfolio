@@ -22,6 +22,7 @@
         "description": "React-based web application that allows users to open tickets and ask questions related to programming. Users can upload images and videos to help ask or answer questions, and responses are shown in organized threads. Includes an integrated Slack bot that allows users to easily see, open, and answer tickets from Slack.",
         "tech": "React, Redux, Node.js/Express, PostgreSQL, Slack API",
         "demo": "https://devdesk2.now.sh/",
+        "backend": "https://github.com/markpkng/DevDesk-Backend",
         "images": [
             "devdesk1.png",
             "devdesk2.png",

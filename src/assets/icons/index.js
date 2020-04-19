@@ -5,5 +5,15 @@ import Resume from "./resume.svg";
 import ArrowLeft from "./arrowleft.svg";
 import ArrowRight from "./arrowright.svg";
 import LinkIcon from "./link.svg";
+import Touch from "./touch.svg";
 
-export { Email, Github, Linkedin, Resume, ArrowLeft, ArrowRight, LinkIcon };
+export {
+    Email,
+    Github,
+    Linkedin,
+    Resume,
+    ArrowLeft,
+    ArrowRight,
+    LinkIcon,
+    Touch,
+};

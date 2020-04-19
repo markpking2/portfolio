@@ -1,12 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight } from "../assets/icons";
+import { ArrowLeft, ArrowRight, Touch } from "../assets/icons";
 import styled from "styled-components";
-export default function Carousel({ left, right, top, children }) {
+import "../styles/carousel.css";
+export default function Carousel({
+    left,
+    right,
+    top,
+    children,
+    touched,
+    setTouched,
+    index,
+}) {
     const [xAxis, setXAxis] = useState(0);
     const unorderedListEl = useRef(null);
 
     return (
-        <CarouselContainer>
+        <CarouselContainer onTouchStart={() => setTouched(true)}>
             <Button
                 lb={true}
                 unOrderedListRef={unorderedListEl}
@@ -15,8 +24,25 @@ export default function Carousel({ left, right, top, children }) {
                 top={top}
                 left={left}
                 right={right}
+                touched={touched}
+                setTouched={setTouched}
             />
-            <StyledUl ref={unorderedListEl}>{children}</StyledUl>
+            <SwipeContainer>
+                <Touch
+                    className={touched ? "touched" : "untouched"}
+                    style={{
+                        animationDelay: `${index * 0.7}s`,
+                        minWidth: "30%",
+                        height: "50%",
+                        maxHeight: "200px",
+                    }}
+                />
+            </SwipeContainer>
+            <UlBg>
+                <StyledUl ref={unorderedListEl} opacity={touched ? 1 : 0.1}>
+                    {children}
+                </StyledUl>
+            </UlBg>
             <Button
                 lb={false}
                 unOrderedListRef={unorderedListEl}
@@ -25,12 +51,24 @@ export default function Carousel({ left, right, top, children }) {
                 top={top}
                 left={left}
                 right={right}
+                touched={touched}
+                setTouched={setTouched}
             />
         </CarouselContainer>
     );
 }
 
-function Button({ unOrderedListRef, xAxis, setXAxis, top, left, right, lb }) {
+function Button({
+    unOrderedListRef,
+    xAxis,
+    setXAxis,
+    top,
+    left,
+    right,
+    lb,
+    touched,
+    setTouched,
+}) {
     const [show, setShow] = useState(false);
     const buttonEl = useRef(null);
 
@@ -48,6 +86,7 @@ function Button({ unOrderedListRef, xAxis, setXAxis, top, left, right, lb }) {
 
         if (!window.matchMedia("(pointer: coarse)").matches) {
             showButtons();
+            setTouched(true);
         }
     }, [xAxis]);
 
@@ -137,8 +176,30 @@ const StyledUl = styled.ul`
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
+    opacity: ${(props) => props.opacity};
+    top: 0px;
 
     &::-webkit-scrollbar {
         display: none;
+    }
+`;
+
+const UlBg = styled.div``;
+
+const SwipeContainer = styled.div`
+    pointer-events: none;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    span {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        color: white;
     }
 `;

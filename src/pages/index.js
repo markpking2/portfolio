@@ -26,7 +26,7 @@ const ImgWrapper = styled.div`
 export default ({ data }) => {
     const [image] = data.Image.edges;
     const {
-        childImageSharp: { sizes }
+        childImageSharp: { sizes },
     } = image.node;
     return (
         <>
@@ -41,9 +41,9 @@ export default ({ data }) => {
                     I'm a full stack web developer with experience working on
                     diverse cross functional teams with Data Scientists, Mobile
                     Developers, and UX/UI Designers. I work primarily with
-                    JavaScript and Python, using technologies such as React,
-                    Redux, Node.js, Express, Django, PostgreSQL, Apollo, and
-                    GraphQL.
+                    JavaScript/TypeScript and Python, using technologies such as
+                    React, Redux, Node.js, Express, Django, PostgreSQL, Apollo,
+                    and GraphQL.
                 </P>
                 <P>
                     Outside of programming you might find me reading a book or
