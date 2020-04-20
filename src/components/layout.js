@@ -56,6 +56,7 @@ const Icons = styled.ul`
     }
 
     svg {
+        width: 1.8rem;
         min-width: 1.8rem;
         min-height: 1.8rem;
 
@@ -132,7 +133,7 @@ export default ({ children }) => (
                             <Linkedin
                                 style={{
                                     background: "white",
-                                    borderRadius: "6px",
+                                    borderRadius: "7px",
                                 }}
                             />
                         </a>
