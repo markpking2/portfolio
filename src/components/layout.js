@@ -20,7 +20,7 @@ const LayoutDiv = styled.div`
 `;
 
 const Header = styled.header`
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 570px) {
         display: flex;
         flex-direction: column;
         align-items: center;
