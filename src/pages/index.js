@@ -39,15 +39,12 @@ export default ({ data }) => {
                 <Typewriter text='Hello :)' />
                 <P>
                     I'm a full stack web developer with experience working on
-                    diverse cross functional teams with Data Scientists, Mobile
-                    Developers, and UX/UI Designers. I work primarily with
+                    diverse cross functional teams with web developers, mobile
+                    developers, and UX/UI designers. I love to work with
                     JavaScript and Python, using technologies such as React,
-                    Redux, Node.js, Express, Django, PostgreSQL, Apollo, and
-                    GraphQL.
-                </P>
-                <P>
-                    Outside of programming you might find me reading a book or
-                    spending time with my two dogs.
+                    Redux, Node.js, SQL, and GraphQL. I'm a fast learner, avid
+                    team player, and I believe I would be a great addition to
+                    any team.
                 </P>
                 <ImgWrapper>
                     <StyledImg
