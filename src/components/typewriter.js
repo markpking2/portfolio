@@ -10,6 +10,7 @@ export default ({ text }) => {
                 await typeWriter(text);
             })();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function typeWriter(string) {

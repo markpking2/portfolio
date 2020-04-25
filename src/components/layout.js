@@ -110,53 +110,55 @@ const isActive = ({ isCurrent }) => {
     return isCurrent ? { className: "active" } : {};
 };
 
-export default ({ children }) => (
-    <LayoutDiv>
-        <Content>
-            <Header>
-                <StyledLink id='name' to='/'>
-                    <h1>Mark King</h1>
-                </StyledLink>
-                <Icons>
-                    <li>
-                        <a href={resume}>
-                            <Resume fill='red' />
-                        </a>
-                    </li>
-                    <li>
-                        <a href='https://github.com/markpkng'>
-                            <Github fill='white' textDecoration='none' />
-                        </a>
-                    </li>
-                    <li>
-                        <a href='https://linkedin.com/in/markpking'>
-                            <Linkedin
-                                style={{
-                                    background: "white",
-                                    borderRadius: "7px",
-                                }}
-                            />
-                        </a>
-                    </li>
-                    <li>
-                        <a href='mailto:mark@mark.codes'>
-                            <Email fill='white' />
-                        </a>
-                    </li>
-                </Icons>
-                <Links>
-                    <StyledLink to='/' getProps={isActive}>
-                        About
+export default ({ children }) => {
+    return (
+        <LayoutDiv>
+            <Content>
+                <Header>
+                    <StyledLink id='name' to='/'>
+                        <h1>Mark King</h1>
                     </StyledLink>
-                    <StyledLink to='/projects/' getProps={isActive}>
-                        Projects
-                    </StyledLink>
-                </Links>
-            </Header>
-            {children}
-        </Content>
-        <Footer>
-            <span style={{ color: "#ffffff" }}>&copy; Mark King 2020</span>
-        </Footer>
-    </LayoutDiv>
-);
+                    <Icons>
+                        <li>
+                            <a href={resume}>
+                                <Resume fill='red' />
+                            </a>
+                        </li>
+                        <li>
+                            <a href='https://github.com/markpkng'>
+                                <Github fill='white' textDecoration='none' />
+                            </a>
+                        </li>
+                        <li>
+                            <a href='https://linkedin.com/in/markpking'>
+                                <Linkedin
+                                    style={{
+                                        background: "white",
+                                        borderRadius: "7px",
+                                    }}
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href='mailto:mark@mark.codes'>
+                                <Email fill='white' />
+                            </a>
+                        </li>
+                    </Icons>
+                    <Links>
+                        <StyledLink to='/' getProps={isActive}>
+                            About
+                        </StyledLink>
+                        <StyledLink to='/projects/' getProps={isActive}>
+                            Projects
+                        </StyledLink>
+                    </Links>
+                </Header>
+                {children}
+            </Content>
+            <Footer>
+                <span style={{ color: "#ffffff" }}>&copy; Mark King 2020</span>
+            </Footer>
+        </LayoutDiv>
+    );
+};

@@ -77,6 +77,7 @@ export default ({ sizes, project, touched, setTouched, index }) => {
     const [dimensions, setDimensions] = useState({});
     useLayoutEffect(() => {
         setDimensions(ref.current && ref.current.getBoundingClientRect());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ref.current]);
     return (
         <ProjectContainer>

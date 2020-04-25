@@ -88,6 +88,7 @@ function Button({
             showButtons();
             setTouched(true);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [xAxis]);
 
     function scroll() {

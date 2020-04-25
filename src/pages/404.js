@@ -14,7 +14,10 @@ export default () => (
             <Typewriter text='Error: 404' />
             <NotFoundContainer>
                 <StyledH1>
-                    Uh oh! <span role='img'>😕</span>
+                    Uh oh!{" "}
+                    <span role='img' aria-label='Sad emoji'>
+                        😕
+                    </span>
                 </StyledH1>
                 <h2>Looks like that page doesn't exist.</h2>
             </NotFoundContainer>

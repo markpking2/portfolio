@@ -4,9 +4,10 @@ import Typewriter from "../components/typewriter";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Img from "gatsby-image/withIEPolyfill";
+import { graphql } from "gatsby";
 
 const P = styled.p`
-    margin-bottom: 0.2rem;
+    ${"" /* margin-bottom: 0.2rem; */}
     color: #ffffff;
 `;
 
@@ -38,13 +39,22 @@ export default ({ data }) => {
             <Layout>
                 <Typewriter text='Hello :)' />
                 <P>
-                    I'm a full stack web developer with experience working on
-                    diverse cross functional teams with web developers, mobile
-                    developers, and UX/UI designers. I love to work with
-                    JavaScript and Python, using technologies such as React,
-                    Redux, Node.js, SQL, and GraphQL. I'm a fast learner, avid
-                    team player, and I believe I would be a great addition to
-                    any team.
+                    I'm Mark; a full stack web developer, fast learner, and avid
+                    team player. I have experience working on diverse cross
+                    functional teams with web developers, mobile developers, and
+                    UX/UI designers.
+                </P>
+                <P>
+                    I{" "}
+                    <span role='img' aria-label='heart emoji'>
+                        🧡
+                    </span>{" "}
+                    to work with JavaScript and Python, using technologies such
+                    as React, Redux, Node.js, SQL, and GraphQL.
+                </P>
+                <P>
+                    Outside of programming, you might find me reading a book, on
+                    my mountain bike, or spending time with my two dogs.
                 </P>
                 <ImgWrapper>
                     <StyledImg

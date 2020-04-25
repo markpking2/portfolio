@@ -4,6 +4,7 @@ import Typewriter from "../components/typewriter";
 import Project from "../components/project";
 import projectList from "../data/projects.json";
 import Helmet from "react-helmet";
+import { graphql } from "gatsby";
 
 export default ({ data }) => {
     const [touched, setTouched] = useState(false);
