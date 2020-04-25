@@ -120,9 +120,9 @@ export default ({ children }) => {
                     </StyledLink>
                     <Icons>
                         <li>
-                            <a href={resume}>
+                            <StyledLink to={"/resume"}>
                                 <Resume fill='red' />
-                            </a>
+                            </StyledLink>
                         </li>
                         <li>
                             <a href='https://github.com/markpkng'>
