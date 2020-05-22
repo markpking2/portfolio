@@ -24,8 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: NPM Install
         run: npm install
-    - name: Production Build
+      - name: Production Build
         run: npm run build
-    - name: Deploy to S3
+      - name: Deploy to S3
         run: AWS_ACCESS_KEY_ID=${{ secrets.access_key_id }} AWS_SECRET_ACCESS_KEY=${{ secrets.secret_access_key }} npm run deploy
-    
