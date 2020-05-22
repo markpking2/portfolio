@@ -38,6 +38,11 @@ module.exports = {
                 name: `images`,
             },
         },
-        "gatsby-plugin-netlify",
+        {
+            resolve: `gatsby-plugin-s3`,
+            options: {
+              bucketName: "mark.codes",
+            },
+        },
     ],
 };
