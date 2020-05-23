@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { Email, Github, Linkedin, Resume } from "../assets/icons";
-import resume from "../assets/Mark_King_Resume.pdf";
 
 const LayoutDiv = styled.div`
   margin: 3rem auto 0 auto;
@@ -154,6 +153,9 @@ export default ({ children }) => {
             </StyledLink>
             <StyledLink to="/projects/" getProps={isActive}>
               Projects
+            </StyledLink>
+            <StyledLink to="/contact/" getProps={isActive}>
+              Contact
             </StyledLink>
           </Links>
         </Header>
