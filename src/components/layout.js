@@ -2,9 +2,74 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import { Email, Github, Linkedin, Resume } from "../assets/icons";
+import Hamburger from "./hamburger";
+
+const isActive = ({ isCurrent }) => {
+  return isCurrent ? { className: "active" } : {};
+};
+
+export default ({ children }) => {
+  return (
+    <LayoutDiv>
+      <Hamburger />
+      <Content>
+        <Header>
+          <StyledLink id="name" to="/">
+            <h1>Mark King</h1>
+          </StyledLink>
+          <Icons>
+            <li>
+              <StyledLink to={"/resume"} title="Resume">
+                <Resume fill="red" />
+              </StyledLink>
+            </li>
+            <li>
+              <a href="https://github.com/markpkng" title="Mark's GitHub">
+                <Github fill="white" textDecoration="none" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/in/markpking"
+                title="Mark's LinkedIn"
+              >
+                <Linkedin
+                  style={{
+                    background: "white",
+                    borderRadius: "7px",
+                  }}
+                />
+              </a>
+            </li>
+            <li>
+              <a href="mailto:mark@mark.codes" title="Mark's Email">
+                <Email fill="white" />
+              </a>
+            </li>
+          </Icons>
+          <Links>
+            <StyledLink to="/" getProps={isActive}>
+              About
+            </StyledLink>
+            <StyledLink to="/projects/" getProps={isActive}>
+              Projects
+            </StyledLink>
+            <StyledLink to="/contact/" getProps={isActive}>
+              Contact
+            </StyledLink>
+          </Links>
+        </Header>
+        {children}
+      </Content>
+      <Footer>
+        <span style={{ color: "#ffffff" }}>&copy; Mark King 2020</span>
+      </Footer>
+    </LayoutDiv>
+  );
+};
 
 const LayoutDiv = styled.div`
-  margin: 3rem auto 0 auto;
+  margin: 2.5rem auto 0 auto;
   max-width: 950px;
   padding: 0 3rem;
 
@@ -94,6 +159,9 @@ const Links = styled.div`
           opacity: 1
       }
   }
+  @media only screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 const Content = styled.div`
   min-height: calc(100vh - 125px);
@@ -104,66 +172,3 @@ const Footer = styled.footer`
   height: 75px;
   text-align: center;
 `;
-
-const isActive = ({ isCurrent }) => {
-  return isCurrent ? { className: "active" } : {};
-};
-
-export default ({ children }) => {
-  return (
-    <LayoutDiv>
-      <Content>
-        <Header>
-          <StyledLink id="name" to="/">
-            <h1>Mark King</h1>
-          </StyledLink>
-          <Icons>
-            <li>
-              <StyledLink to={"/resume"} title="Resume">
-                <Resume fill="red" />
-              </StyledLink>
-            </li>
-            <li>
-              <a href="https://github.com/markpkng" title="Mark's GitHub">
-                <Github fill="white" textDecoration="none" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/in/markpking"
-                title="Mark's LinkedIn"
-              >
-                <Linkedin
-                  style={{
-                    background: "white",
-                    borderRadius: "7px",
-                  }}
-                />
-              </a>
-            </li>
-            <li>
-              <a href="mailto:mark@mark.codes" title="Mark's Email">
-                <Email fill="white" />
-              </a>
-            </li>
-          </Icons>
-          <Links>
-            <StyledLink to="/" getProps={isActive}>
-              About
-            </StyledLink>
-            <StyledLink to="/projects/" getProps={isActive}>
-              Projects
-            </StyledLink>
-            <StyledLink to="/contact/" getProps={isActive}>
-              Contact
-            </StyledLink>
-          </Links>
-        </Header>
-        {children}
-      </Content>
-      <Footer>
-        <span style={{ color: "#ffffff" }}>&copy; Mark King 2020</span>
-      </Footer>
-    </LayoutDiv>
-  );
-};

@@ -89,15 +89,10 @@ export default ({ data }) => {
       </Helmet>
       <Layout>
         <Typewriter text="Contact" />
-        {/* <ImgWrapper>
-          <StyledImg
-            title={"Mark and his two dogs"}
-            alt="Mark and his two dogs"
-            sizes={sizes}
-          />
-        </ImgWrapper> */}
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          <h3>Feel free to send me a message!</h3>
+          <h3 style={{ margin: "0.5rem 0" }}>
+            Feel free to send me a message!
+          </h3>
           {responseMessage === "success" && (
             <StyledH3>
               Message sent successfully!{" "}

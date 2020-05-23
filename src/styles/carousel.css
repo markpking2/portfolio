@@ -1,25 +1,25 @@
 .untouched {
-    position: absolute;
-    z-index: 1;
-    fill: white;
-    animation: swipe 3s linear infinite;
+  position: absolute;
+  z-index: 1;
+  fill: white;
+  animation: swipe 3s linear infinite;
 }
 
 .touched {
-    display: none;
+  display: none;
 }
 
 @keyframes swipe {
-    0% {
-        opacity: 0;
-        left: 70%;
-    }
-    50% {
-        opacity: 1;
-        left: 30%;
-    }
-    100% {
-        left: 0;
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+    left: 70%;
+  }
+  50% {
+    opacity: 1;
+    left: 30%;
+  }
+  100% {
+    left: 0;
+    opacity: 0;
+  }
 }
