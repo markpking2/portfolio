@@ -6,6 +6,7 @@ import ArrowLeft from "./arrowleft.svg";
 import ArrowRight from "./arrowright.svg";
 import LinkIcon from "./link.svg";
 import Touch from "./touch.svg";
+import Name from "./name.svg";
 
 export {
     Email,
@@ -16,4 +17,5 @@ export {
     ArrowRight,
     LinkIcon,
     Touch,
+    Name,
 };

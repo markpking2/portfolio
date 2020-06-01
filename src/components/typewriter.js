@@ -44,7 +44,7 @@ const TypewriterContainer = styled.div`
 const Typewriter = styled.div`
     display: inline-block;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: 0.2em solid rgba(255, 255, 255, 0.9); /* The typewriter cursor */
+    border-right: 0.2em solid ${(props) => props.theme.primary}; /* The typewriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     animation: blinker 1.25s step-end infinite;
@@ -56,7 +56,7 @@ const Typewriter = styled.div`
             border-color: transparent;
         }
         50% {
-            border-color: rgba(255, 255, 255, 0.9);
+            border-color: ${(props) => props.theme.primary};
         }
     }
 `;

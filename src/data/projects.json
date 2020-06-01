@@ -1,96 +1,96 @@
 [
-  {
-    "name": "Community Calendar",
-    "description": "A portal tailored to the needs of neighborhoods and small community groups.  Cut through the noise of crowded social media sites and discover events that have been in your neighborhood this entire time.",
-    "tech": "React, Node.js, Auth0, GraphQL, Apollo Client/Server, Prisma, PostgreSQL",
-    "demo": "https://cc-production.netlify.app",
-    "frontend": "https://github.com/markpkng/community-calendar-fe",
-    "backend": "https://github.com/markpkng/community-calendar-be",
-    "images": [
-      "ourcommunitycal1.png",
-      "ourcommunitycal2.png",
-      "ourcommunitycal3.png",
-      "ourcommunitycal4.png",
-      "ourcommunitycal5.png",
-      "ourcommunitycal6.png",
-      "ourcommunitycal7.png"
-    ],
-    "maxWidth": 100
-  },
-  {
-    "name": "Dev Desk",
-    "description": "React-based web application that allows users to open tickets and ask questions related to programming. Users can upload images and videos to help ask or answer questions, and responses are shown in organized threads. Includes an integrated Slack bot that allows users to easily see, open, and answer tickets from Slack.",
-    "tech": "React, Redux, Node.js/Express, PostgreSQL, Slack API",
-    "demo": "https://devdesk2.now.sh/",
-    "backend": "https://github.com/markpkng/DevDesk-Backend",
-    "images": [
-      "devdesk1.png",
-      "devdesk2.png",
-      "devdesk3.png",
-      "devdesk4.png",
-      "devdesk5.png"
-    ],
-    "maxWidth": 100
-  },
-  {
-    "name": "Create Your Own Adventure",
-    "tech": "React, Node.js/Express, PostgreSQL",
-    "description": "This project was selected \"Best Overall\" out of 30+ teams for Lambda School's 2020 30-hour Winter Hackathon. Users can access a graphical node interface to create, collaborate, and share interactive stories with other users.",
-    "demo": "https://createadventure.netlify.com/",
-    "backend": "https://github.com/Lambda-Hackathon-2020-Git-Adventure/Git-Adventure-Backend",
-    "images": [
-      "createyouradventure1.png",
-      "createyouradventure2.png",
-      "createyouradventure3.png",
-      "createyouradventure4.png"
-    ],
-    "maxWidth": 100
-  },
-  {
-    "name": "Ride For Life",
-    "description": "An \"Uber-like\" application designed for pregnant women in Uganda.  Riders can request rides to nearby health facilities from available drivers.  Drivers can be notified by text messages.",
-    "tech": "React, Redux, Node.js/Express, PostgreSQL",
-    "demo": "https://rfl.netlify.com/",
-    "frontend": "https://github.com/RideforLife/FrontEnd",
-    "images": [
-      "rideforlife1.png",
-      "rideforlife2.png",
-      "rideforlife3.png",
-      "rideforlife4.png",
-      "rideforlife5.png"
-    ],
-    "maxWidth": 100
-  },
-  {
-    "name": "The Legend of Fnu",
-    "description": "An online multiplayer dungeon game for Android/iOS. It utilizes websockets for chat and live player movement.  The game world map and room connections can be reset and randomly generated.",
-    "tech": "React Native, Django, PostgreSQL",
-    "frontend": "https://github.com/winning-team/react-native-frontend",
-    "backend": "https://github.com/winning-team/backend",
-    "images": [
-      "legendoffnu1.png",
-      "legendoffnu2.png",
-      "legendoffnu3.png",
-      "legendoffnu4.png",
-      "legendoffnu5.png",
-      "legendoffnu6.png",
-      "legendoffnu7.png"
-    ],
-    "maxWidth": 50
-  },
-  {
-    "name": "Empowered Conversation",
-    "description": "A user can send an anonymous text message to someone with materials to prepare them for a difficult conversation.  When the recipient has completed viewing the educational materials, the user will be notified that the recipient is ready to have a conversation.",
-    "tech": "React, Node.js/Express, Twilio",
-    "demo": "https://empoweredconversation-bw.netlify.com/",
-    "frontend": "https://github.com/Build-Week-Empowered-Conversations/Front-End",
-    "images": [
-      "empoweredconversation1.png",
-      "empoweredconversation2.png",
-      "empoweredconversation3.png",
-      "empoweredconversation4.png",
-      "empoweredconversation5.png"
-    ],
-    "maxWidth": 100
-  }
+    {
+        "name": "Community Calendar",
+        "description": "A portal tailored to the needs of neighborhoods and small community groups.  Cut through the noise of crowded social media sites and discover events that have been in your neighborhood this entire time.",
+        "tech": "React, Node.js, Auth0, GraphQL, Apollo Client/Server, Prisma, PostgreSQL",
+        "demo": "https://cc-production.netlify.app",
+        "frontend": "https://github.com/markpkng/community-calendar-fe",
+        "backend": "https://github.com/markpkng/community-calendar-be",
+        "images": [
+            "ourcommunitycal1.png",
+            "ourcommunitycal2.png",
+            "ourcommunitycal3.png",
+            "ourcommunitycal4.png",
+            "ourcommunitycal5.png",
+            "ourcommunitycal6.png",
+            "ourcommunitycal7.png"
+        ],
+        "maxWidth": 100
+    },
+    {
+        "name": "Dev Desk",
+        "description": "React-based web application that allows users to open tickets and ask questions related to programming. Users can upload images and videos to help ask or answer questions, and responses are shown in organized threads. Includes an integrated Slack bot that allows users to easily see, open, and answer tickets from Slack.",
+        "tech": "React, Redux, Node.js/Express, PostgreSQL, Slack API",
+        "demo": "https://devdesk2.now.sh/",
+        "backend": "https://github.com/markpkng/DevDesk-Backend",
+        "images": [
+            "devdesk1.png",
+            "devdesk2.png",
+            "devdesk3.png",
+            "devdesk4.png",
+            "devdesk5.png"
+        ],
+        "maxWidth": 100
+    },
+    {
+        "name": "Create Your Own Adventure",
+        "tech": "React, Node.js/Express, PostgreSQL",
+        "description": "This project was selected \"Best Overall\" out of 30+ teams for Lambda School's 2020 30-hour Winter Hackathon. Users can access a graphical node interface to create, collaborate, and share interactive stories with other users.",
+        "demo": "https://createadventure.netlify.com/",
+        "backend": "https://github.com/Lambda-Hackathon-2020-Git-Adventure/Git-Adventure-Backend",
+        "images": [
+            "createyouradventure1.png",
+            "createyouradventure2.png",
+            "createyouradventure3.png",
+            "createyouradventure4.png"
+        ],
+        "maxWidth": 100
+    },
+    {
+        "name": "Ride For Life",
+        "description": "An \"Uber-like\" application designed for pregnant women in Uganda.  Riders can request rides to nearby health facilities from available drivers.  Drivers can be notified by text messages.",
+        "tech": "React, Redux, Node.js/Express, PostgreSQL",
+        "demo": "https://rfl.netlify.com/",
+        "frontend": "https://github.com/RideforLife/FrontEnd",
+        "images": [
+            "rideforlife1.png",
+            "rideforlife2.png",
+            "rideforlife3.png",
+            "rideforlife4.png",
+            "rideforlife5.png"
+        ],
+        "maxWidth": 100
+    },
+    {
+        "name": "The Legend of Fnu",
+        "description": "An online multiplayer dungeon game for Android/iOS. It utilizes websockets for chat and live player movement.  The game world map and room connections can be reset and randomly generated.",
+        "tech": "React Native, Django, PostgreSQL",
+        "frontend": "https://github.com/winning-team/react-native-frontend",
+        "backend": "https://github.com/winning-team/backend",
+        "images": [
+            "legendoffnu1.png",
+            "legendoffnu2.png",
+            "legendoffnu3.png",
+            "legendoffnu4.png",
+            "legendoffnu5.png",
+            "legendoffnu6.png",
+            "legendoffnu7.png"
+        ],
+        "maxWidth": 50
+    },
+    {
+        "name": "Empowered Conversation",
+        "description": "A user can send an anonymous text message to someone with materials to prepare them for a difficult conversation.  When the recipient has completed viewing the educational materials, the user will be notified that the recipient is ready to have a conversation.",
+        "tech": "React, Node.js/Express, Twilio",
+        "demo": "https://empoweredconversation-bw.netlify.com/",
+        "frontend": "https://github.com/Build-Week-Empowered-Conversations/Front-End",
+        "images": [
+            "empoweredconversation1.png",
+            "empoweredconversation2.png",
+            "empoweredconversation3.png",
+            "empoweredconversation4.png",
+            "empoweredconversation5.png"
+        ],
+        "maxWidth": 100
+    }
 ]
