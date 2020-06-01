@@ -342,7 +342,8 @@ const StyledArrowRight = styled(ArrowRight)`
 `;
 
 const NameWrapper = styled.span`
-    max-width: @media only screen and (max-width: 450px) {
-        margin-top: 30px;
+    display: inline-block;
+    @media only screen and (max-width: 450px) {
+        margin-top: 35px;
     }
 `;
