@@ -4,78 +4,6 @@ import Img from "gatsby-image/withIEPolyfill";
 import { LinkIcon, Github } from "../assets/icons";
 import Carousel from "./carousel";
 
-const ProjectContainer = styled.div`
-    width: 100%;
-    margin: 1rem 0;
-`;
-
-const StyledImg = styled(Img)`
-    margin: 0;
-    min-width: ${({ maxWidth }) => maxWidth}%;
-    max-height: 750px;
-    padding: 0 0.3rem;
-`;
-
-const StyledLinkIcon = styled(LinkIcon)`
-    display: inline;
-    margin-left: 1rem;
-    fill: ${(props) => props.theme.tertiary};
-`;
-
-const H4 = styled.h4`
-    display: inline;
-    margin: 0 !important;
-    color: ${(props) => props.theme.primary};
-`;
-
-const P = styled.p`
-    margin-bottom: 0.2rem;
-    color: ${(props) => props.theme.primary};
-`;
-
-const ProjectLink = styled.a`
-    text-decoration: none;
-    background-image: none;
-
-    h2 {
-        display: inline;
-        text-shadow: none;
-        color: ${(props) => props.theme.tertiary};
-    }
-
-    &:hover {
-        opacity: 0.5;
-    }
-`;
-
-const StyledSpan = styled.span`
-    color: ${(props) => props.theme.primary};
-`;
-
-const LinkSpan = styled.span`
-    color: ${(props) => props.theme.tertiary};
-    text-shadow: none;
-`;
-
-const RepoDiv = styled.div`
-    display: flex;
-    align-items: center;
-
-    a {
-        text-decoration: none;
-        background-image: none;
-
-        &:hover {
-            opacity: 0.5;
-            cursor: pointer;
-        }
-    }
-`;
-
-const StyledGithub = styled(Github)`
-    fill: ${(props) => props.theme.primary};
-`;
-
 export default ({ sizes, project, touched, setTouched, index }) => {
     const ref = useRef();
     const [dimensions, setDimensions] = useState({});
@@ -151,3 +79,75 @@ export default ({ sizes, project, touched, setTouched, index }) => {
         </ProjectContainer>
     );
 };
+
+const ProjectContainer = styled.div`
+    width: 100%;
+    margin: 1rem 0;
+`;
+
+const StyledImg = styled(Img)`
+    margin: 0;
+    min-width: ${({ maxWidth }) => maxWidth}%;
+    max-height: 750px;
+    padding: 0 0.3rem;
+`;
+
+const StyledLinkIcon = styled(LinkIcon)`
+    display: inline;
+    margin-left: 1rem;
+    fill: ${(props) => props.theme.tertiary};
+`;
+
+const H4 = styled.h4`
+    display: inline;
+    margin: 0 !important;
+    color: ${(props) => props.theme.primary};
+`;
+
+const P = styled.p`
+    margin-bottom: 0.2rem;
+    color: ${(props) => props.theme.primary};
+`;
+
+const ProjectLink = styled.a`
+    text-decoration: none;
+    background-image: none;
+
+    h2 {
+        display: inline;
+        text-shadow: none;
+        color: ${(props) => props.theme.tertiary};
+    }
+
+    &:hover {
+        opacity: 0.5;
+    }
+`;
+
+const StyledSpan = styled.span`
+    color: ${(props) => props.theme.primary};
+`;
+
+const LinkSpan = styled.span`
+    color: ${(props) => props.theme.tertiary};
+    text-shadow: none;
+`;
+
+const RepoDiv = styled.div`
+    display: flex;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+        background-image: none;
+
+        &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+        }
+    }
+`;
+
+const StyledGithub = styled(Github)`
+    fill: ${(props) => props.theme.primary};
+`;

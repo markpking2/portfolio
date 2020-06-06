@@ -17,9 +17,6 @@ export default ({ data }) => {
     const onSubmit = (data, e) => {
         const recaptchaValue = recaptchaRef.current.getValue();
 
-        console.log(recaptchaValue);
-        console.log(data);
-
         if (!recaptchaCode) {
             setRecaptchError(true);
         } else {
@@ -29,8 +26,6 @@ export default ({ data }) => {
                 Subject: subject,
                 Message: message,
             } = data;
-
-            console.log(name, email, subject, message);
 
             axios
                 .post(
@@ -52,7 +47,6 @@ export default ({ data }) => {
                     }
                 )
                 .then((res) => {
-                    console.log(res);
                     e.target.reset();
                     recaptchaRef.current.reset();
                     setRecaptchaCode(null);
@@ -60,16 +54,12 @@ export default ({ data }) => {
                 })
                 .catch((err) => {
                     setResponseMessage("fail");
-                    console.log(err);
                 });
         }
     };
 
-    console.log(errors);
-
     function onChange(value) {
         if (value) {
-            console.log(value);
             setRecaptchaCode(value);
             setRecaptchError(false);
         }
@@ -80,10 +70,10 @@ export default ({ data }) => {
             <Helmet>
                 <html lang="en" />
                 <meta charSet="utf-8" />
-                <title>My Portfolio - Mark King</title>
+                <title>Contact Me - Mark King</title>
                 <meta
                     name="description"
-                    content="I'm Mark King, a full stack web developer, and this is my portfolio site!"
+                    content="Feel free to send me a message! Fill out the form to send me an email and I will get back to you ASAP."
                 />
                 <link rel="canonical" href="https://mark.codes" />
             </Helmet>
@@ -111,6 +101,7 @@ export default ({ data }) => {
                     )}
                     <InputWrapper>
                         <input
+                            aria-label="Name input"
                             className={errors.Name ? "error" : ""}
                             type="text"
                             placeholder="Name *"
@@ -121,6 +112,7 @@ export default ({ data }) => {
                     </InputWrapper>
                     <InputWrapper>
                         <input
+                            aria-label="Email input"
                             className={errors.Email ? "error" : ""}
                             type="text"
                             placeholder="Email *"
@@ -140,6 +132,7 @@ export default ({ data }) => {
                     </InputWrapper>
                     <InputWrapper>
                         <input
+                            aria-label="Subject input"
                             className={errors.Subject ? "error" : ""}
                             type="text"
                             placeholder="Subject *"
@@ -156,6 +149,7 @@ export default ({ data }) => {
                     </InputWrapper>
                     <InputWrapper>
                         <textarea
+                            aria-label="Message input"
                             className={errors.Message ? "error" : ""}
                             name="Message"
                             placeholder="Message *"

@@ -8,7 +8,11 @@ export default () => {
     };
     return (
         <MenuWrapper className="menu-wrap">
-            <input type="checkbox" class="toggler" />
+            <input
+                aria-label="Toggle hamburger menu"
+                type="checkbox"
+                class="toggler"
+            />
             <div class="hamburger">
                 <div></div>
             </div>

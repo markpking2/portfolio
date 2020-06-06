@@ -6,24 +6,6 @@ import Helmet from "react-helmet";
 import Img from "gatsby-image/withIEPolyfill";
 import { graphql } from "gatsby";
 
-const P = styled.p`
-    ${"" /* margin-bottom: 0.2rem; */}
-    color: ${(props) => props.theme.primary};
-`;
-
-const StyledImg = styled(Img)`
-    grid-row: 1 / -1;
-    max-width: 475px;
-    margin: 0;
-    padding: 0 0.3rem;
-    border-radius: 10px;
-`;
-
-const ImgWrapper = styled.div`
-    margin-top: 30px;
-    margin-bottom: 50px;
-`;
-
 export default ({ data }) => {
     const [image] = data.Image.edges;
     const {
@@ -37,7 +19,7 @@ export default ({ data }) => {
                 <title>My Portfolio - Mark King</title>
                 <meta
                     name="description"
-                    content="I'm Mark King, a full stack web developer, and this is my portfolio site!"
+                    content="I'm Mark King; a full stack web developer, and this is my portfolio site!"
                 />
                 <link rel="canonical" href="https://mark.codes" />
             </Helmet>
@@ -81,7 +63,7 @@ export const query = graphql`
             edges {
                 node {
                     childImageSharp {
-                        sizes(maxWidth: 950) {
+                        sizes(maxWidth: 500) {
                             ...GatsbyImageSharpSizes
                         }
                     }
@@ -89,4 +71,21 @@ export const query = graphql`
             }
         }
     }
+`;
+
+const P = styled.p`
+    color: ${(props) => props.theme.primary};
+`;
+
+const StyledImg = styled(Img)`
+    grid-row: 1 / -1;
+    max-width: 475px;
+    margin: 0;
+    padding: 0 0.3rem;
+    border-radius: 10px;
+`;
+
+const ImgWrapper = styled.div`
+    margin-top: 30px;
+    margin-bottom: 50px;
 `;

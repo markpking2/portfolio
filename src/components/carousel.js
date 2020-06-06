@@ -17,6 +17,7 @@ export default function Carousel({
     return (
         <CarouselContainer onTouchStart={() => setTouched(true)}>
             <Button
+                aria-label="Left carousel button"
                 lb={true}
                 unOrderedListRef={unorderedListEl}
                 xAxis={xAxis}
@@ -45,6 +46,7 @@ export default function Carousel({
                 </StyledUl>
             </UlBg>
             <Button
+                aria-label="Right carousel button"
                 lb={false}
                 unOrderedListRef={unorderedListEl}
                 xAxis={xAxis}
@@ -164,7 +166,7 @@ const StyledButton = styled.button`
     }
 `;
 
-const StyledUl = styled.ul`
+const StyledUl = styled.div`
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
