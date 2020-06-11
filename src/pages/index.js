@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import Img from "gatsby-image/withIEPolyfill";
 import { graphql } from "gatsby";
-import thumbnail from "../../static/thumbnail.png";
 
 export default ({ data }) => {
     const [image] = data.Image.edges;
@@ -18,14 +17,16 @@ export default ({ data }) => {
             <Helmet>
                 <html lang="en" />
                 <meta charSet="utf-8" />
-                <meta property="og:image" content={thumbnail} />
                 <title>My Portfolio - Mark King</title>
                 <meta
                     name="description"
                     content="I'm Mark King; a full stack web developer, and this is my portfolio site!"
                 />
                 <link rel="canonical" href="https://mark.codes" />
-                <meta property="og:image" content={thumbnail} />
+                <meta
+                    property="og:image"
+                    content="https://mark.codes/thumbnail"
+                />
                 <meta property="og:title" content="My Portfolio - Mark King" />
                 <meta
                     property="og:description"

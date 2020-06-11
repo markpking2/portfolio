@@ -5,7 +5,6 @@ import Project from "../components/project";
 import projectList from "../data/projects.json";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
-import thumbnail from "../../static/thumbnail.png";
 
 export default ({ data }) => {
     const [touched, setTouched] = useState(false);
@@ -21,7 +20,10 @@ export default ({ data }) => {
                     content="I'm Mark King, a full stack web developer. Here are some of the projects I've worked on."
                 />
                 <link rel="canonical" href="https://mark.codes/projects" />
-                <meta property="og:image" content={thumbnail} />
+                <meta
+                    property="og:image"
+                    content="https://mark.codes/thumbnail"
+                />
                 <meta property="og:title" content="Projects - Mark King" />
                 <meta
                     property="og:description"
