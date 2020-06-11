@@ -1,9 +1,8 @@
-// cyan
 const theme = {
     colorIndex: 0,
     colors: [
-        "rgb(255, 161, 250)", //pink
         "rgb(102, 252, 241)", //blue
+        "rgb(255, 161, 250)", //pink
         "rgb(104, 255, 8)", //green
         "rgb(255, 41, 34)", //red
         "rgb(255, 137, 34)", //orange

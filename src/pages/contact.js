@@ -15,8 +15,6 @@ export default ({ data }) => {
 
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = (data, e) => {
-        const recaptchaValue = recaptchaRef.current.getValue();
-
         if (!recaptchaCode) {
             setRecaptchError(true);
         } else {
@@ -228,7 +226,7 @@ const InputWrapper = styled.div`
     }
 
     .error {
-        border-color: ${(props) => props.theme.error}
+        border-color: ${(props) => props.theme.error};
         color: ${(props) => props.theme.error};
 
         &:focus {

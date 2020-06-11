@@ -67,7 +67,9 @@ export default ({ children }) => {
                             <StyledArrowLeft
                                 onClick={() => colorChange(true)}
                             />
-                            <StyledName />
+                            <StyledLink to="/">
+                                <StyledName />
+                            </StyledLink>
                             <StyledArrowRight
                                 onClick={() => colorChange(false)}
                             />

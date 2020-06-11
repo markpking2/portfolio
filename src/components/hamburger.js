@@ -11,12 +11,12 @@ export default () => {
             <input
                 aria-label="Toggle hamburger menu"
                 type="checkbox"
-                class="toggler"
+                className="toggler"
             />
-            <div class="hamburger">
+            <div className="hamburger">
                 <div></div>
             </div>
-            <div class="menu">
+            <div className="menu">
                 <div>
                     <div>
                         <ul>
