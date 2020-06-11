@@ -24,8 +24,8 @@ export default ({ data }) => {
                 />
                 <link rel="canonical" href="https://mark.codes" />
                 <meta
-                    property="og:image"
-                    content="https://mark.codes/thumbnail"
+                    property="og:image:secure_url"
+                    content="https://mark.codes/ogp.png"
                 />
                 <meta property="og:title" content="My Portfolio - Mark King" />
                 <meta
