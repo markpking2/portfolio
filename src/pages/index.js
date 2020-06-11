@@ -27,6 +27,7 @@ export default ({ data }) => {
                     property="og:image:secure_url"
                     content="https://mark.codes/ogp.png"
                 />
+                <meta property="og:image" content="http://mark.codes/ogp.png" />
                 <meta property="og:title" content="My Portfolio - Mark King" />
                 <meta
                     property="og:description"
