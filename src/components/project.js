@@ -4,7 +4,7 @@ import Img from "gatsby-image/withIEPolyfill";
 import { LinkIcon, Github } from "../assets/icons";
 import Carousel from "./carousel";
 
-export default ({ sizes, project, touched, setTouched, index }) => {
+export default ({ sizes, project, touched, setTouched }) => {
     const ref = useRef();
     const [dimensions, setDimensions] = useState({});
     useLayoutEffect(() => {
@@ -28,7 +28,6 @@ export default ({ sizes, project, touched, setTouched, index }) => {
                     right={55}
                     touched={touched}
                     setTouched={setTouched}
-                    index={index}
                 >
                     {sizes.map((size, i) => (
                         <StyledImg

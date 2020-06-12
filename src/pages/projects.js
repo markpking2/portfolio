@@ -50,7 +50,6 @@ export default ({ data }) => {
                                 project={project}
                                 touched={touched}
                                 setTouched={setTouched}
-                                index={i}
                             />
                         );
                     })}

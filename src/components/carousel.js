@@ -9,7 +9,6 @@ export default function Carousel({
     children,
     touched,
     setTouched,
-    index,
 }) {
     const [xAxis, setXAxis] = useState(0);
     const unorderedListEl = useRef(null);
@@ -31,7 +30,6 @@ export default function Carousel({
                 <StyledTouch
                     className={touched ? "touched" : "untouched"}
                     style={{
-                        animationDelay: `${index * 0.7}s`,
                         minWidth: "30%",
                         height: "50%",
                         maxHeight: "200px",

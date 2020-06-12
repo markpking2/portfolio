@@ -31,6 +31,11 @@ export default () => {
                                 </Link>
                             </li>
                             <li>
+                                <Link to="/skills/" getProps={isActive}>
+                                    Skills
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/contact/" getProps={isActive}>
                                     Contact
                                 </Link>
@@ -104,6 +109,9 @@ const MenuWrapper = styled.div`
         padding: 1rem;
         background: ${(props) => props.theme.tertiary};
         border-radius: 0px 0px 0px 5px;
+        border-size: 2px;
+        border-style: solid;
+        border-color: white;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -21,7 +21,7 @@ export default ({ children }) => {
     const [selectedTheme, setSelectedTheme] = useState({
         ...theme,
         tertiary: theme.colors[theme.colorIndex],
-        before: theme.colors[6],
+        before: theme.colors[5],
         after: theme.colors[1],
     });
 
@@ -31,13 +31,13 @@ export default ({ children }) => {
             tertiary =
                 theme.colors[
                     theme.colorIndex === 0
-                        ? (theme.colorIndex = 6)
+                        ? (theme.colorIndex = 5)
                         : --theme.colorIndex
                 ];
         } else {
             tertiary =
                 theme.colors[
-                    theme.colorIndex === 6
+                    theme.colorIndex === 5
                         ? (theme.colorIndex = 0)
                         : ++theme.colorIndex
                 ];
@@ -48,10 +48,10 @@ export default ({ children }) => {
             tertiary,
             before:
                 theme.colorIndex === 0
-                    ? theme.colors[6]
+                    ? theme.colors[5]
                     : theme.colors[theme.colorIndex - 1],
             after:
-                theme.colorIndex === 6
+                theme.colorIndex === 5
                     ? theme.colors[0]
                     : theme.colors[theme.colorIndex + 1],
         });
@@ -116,6 +116,9 @@ export default ({ children }) => {
                             <StyledLink to="/projects/" getProps={isActive}>
                                 Projects
                             </StyledLink>
+                            <StyledLink to="/skills/" getProps={isActive}>
+                                Skills
+                            </StyledLink>
                             <StyledLink to="/contact/" getProps={isActive}>
                                 Contact
                             </StyledLink>
@@ -144,6 +147,13 @@ export default ({ children }) => {
 };
 
 const GlobalStyle = createGlobalStyle`
+    html {
+        @media only screen and (max-width: 530px) {
+            font-size: 106.25%;
+            line-height: 24.65px;
+        }
+    }
+
     html,
     body,
     #___gatsby {
@@ -184,7 +194,7 @@ const LayoutDiv = styled.div`
 `;
 
 const Header = styled.header`
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 750px) {
         display: flex;
         flex-direction: column;
         align-items: center;

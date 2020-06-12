@@ -3,10 +3,9 @@ const theme = {
     colors: [
         "rgb(102, 252, 241)", //blue
         "rgb(255, 161, 250)", //pink
-        "rgb(104, 255, 8)", //green
-        "rgb(255, 41, 34)", //red
+        "rgb(104, 255, 58)", //green
         "rgb(255, 137, 34)", //orange
-        "rgb(144, 129, 255)", //purple
+        "rgb(164, 149, 255)", //purple
         "rgb(255, 249, 76)", //yellow
     ],
     primary: "rgb(255, 255, 255)",
