@@ -49,8 +49,7 @@ export default ({ data }) => {
                     <span role="img" aria-label="heart emoji">
                         🧡
                     </span>{" "}
-                    to work with JavaScript and Python; using React, Node.js,
-                    AWS, Express, SQL, MongoDB, and GraphQL among other things.
+                    to work with JavaScript and Python among other things.
                 </P>
                 <P>
                     Outside of programming, you might find me reading a book, at
