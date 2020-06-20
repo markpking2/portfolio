@@ -1,9 +1,9 @@
-const { colorIndex } = JSON.parse(
-    window.localStorage.getItem("mark.codes.color")
-);
-
 const theme = {
-    colorIndex: colorIndex ? colorIndex : 0,
+    colorIndex:
+        typeof window !== "undefined"
+            ? JSON.parse(window.localStorage.getItem("mark.codes.color"))
+                  .colorIndex
+            : 0,
     colors: [
         "rgb(102, 252, 241)", //blue
         "rgb(255, 161, 250)", //pink
