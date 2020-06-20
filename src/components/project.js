@@ -71,7 +71,7 @@ export default ({ sizes, project, touched, setTouched, staticImages }) => {
                 <LinkDiv>
                     <a href={project.frontend}>
                         <LinkSpan>
-                            <strong>Front end repository</strong>
+                            <strong>Frontend repository</strong>
                         </LinkSpan>
                         <LinkSpan style={{ marginLeft: "0.5rem" }}>
                             <StyledGithub />
@@ -83,7 +83,7 @@ export default ({ sizes, project, touched, setTouched, staticImages }) => {
                 <LinkDiv>
                     <a href={project.backend}>
                         <LinkSpan>
-                            <strong>Back end repository</strong>
+                            <strong>Backend repository</strong>
                         </LinkSpan>
                         <LinkSpan style={{ marginLeft: "0.5rem" }}>
                             <StyledGithub />
