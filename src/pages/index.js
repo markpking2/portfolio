@@ -52,7 +52,7 @@ export default ({ data }) => {
                         🧡
                     </span>{" "}
                     to work with JavaScript and Python but I'm always excited to
-                    learn new things!
+                    learn something new!
                 </P>
                 <P>
                     Outside of programming, you might find me reading a book, at
