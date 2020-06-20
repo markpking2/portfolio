@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Email, Github, Linkedin, Resume, Bucket } from "../assets/icons";
@@ -6,22 +6,19 @@ import Hamburger from "./hamburger";
 import { theme } from "../styles/themes";
 import Helmet from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const isActive = ({ isCurrent }) => {
     return isCurrent ? { className: "active" } : {};
 };
 
 export default ({ children }) => {
-    const [selectedTheme, setSelectedTheme] = useLocalStorage(
-        "mark.codes.color",
-        {
-            ...theme,
-            tertiary: theme.colors[theme.colorIndex],
-            before: theme.colors[5],
-            after: theme.colors[1],
-        }
-    );
+    const [selectedTheme, setSelectedTheme] = useState({
+        ...theme,
+        tertiary: theme.colors[theme.colorIndex],
+        before: theme.colors[5],
+        after: theme.colors[1],
+    });
+    console.log(selectedTheme);
 
     const {
         Background: { publicURL: backgroundURL },
