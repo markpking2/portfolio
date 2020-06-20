@@ -211,7 +211,6 @@ const LayoutDiv = styled.div`
     margin: 0 auto 0 auto;
     max-width: 900px;
     padding: 2.5rem 3rem 1rem 3rem;
-    padding-top: 2.5rem;
     border-left: 3px solid ${(props) => props.theme.tertiary};
     border-right: 3px solid ${(props) => props.theme.tertiary};
     background: ${(props) => props.theme.secondary};
@@ -324,7 +323,6 @@ const Footer = styled.footer`
     width: 100%;
     height: 75px;
     text-align: center;
-    margin-top: 3rem;
     color: ${(props) => props.theme.primary};
 `;
 
