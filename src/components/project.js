@@ -5,7 +5,6 @@ import { LinkIcon, Github } from "../assets/icons";
 import Carousel from "./carousel";
 
 export default ({ sizes, project, touched, setTouched, staticImages }) => {
-    console.log(staticImages);
     const ref = useRef();
     const [dimensions, setDimensions] = useState({});
     useLayoutEffect(() => {

@@ -5,11 +5,20 @@ export default ({ text }) => {
     const [typed, setTyped] = useState("");
 
     useEffect(() => {
-        if (typed.length < text.length) {
-            (async () => {
-                await typeWriter(text);
-            })();
+        let cancelled = false;
+
+        if (!cancelled) {
+            if (typed.length < text.length) {
+                (async () => {
+                    await typeWriter(text);
+                })();
+            }
         }
+
+        return () => {
+            cancelled = true;
+        };
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

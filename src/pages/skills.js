@@ -44,10 +44,6 @@ import {
 } from "../assets/skills";
 
 export default ({ data }) => {
-    // const [image] = data.Image.edges;
-    // const {
-    //     childImageSharp: { sizes },
-    // } = image.node;
     const {
         cloudPractitioner: {
             childImageSharp: { sizes: cpSizes },
@@ -56,7 +52,7 @@ export default ({ data }) => {
             childImageSharp: { sizes: saSizes },
         },
     } = data;
-    console.log(cpSizes, saSizes);
+
     return (
         <>
             <Helmet>
@@ -67,16 +63,20 @@ export default ({ data }) => {
             <Layout>
                 <Typewriter text="Things I've used..." />
                 <section>
-                    <StyledH3>Certifications</StyledH3>
-                    <A href="https://www.youracclaim.com/badges/2fd6df00-8f74-4116-b2f6-ebb2b18c6a48/public_url">
-                        <BadgeWrapper>
+                    <div>
+                        <StyledH3>Certifications</StyledH3>
+                    </div>
+
+                    <BadgeWrapper>
+                        <A href="https://www.youracclaim.com/badges/2fd6df00-8f74-4116-b2f6-ebb2b18c6a48/public_url">
                             <StyledImg
                                 title={"Mark and his two dogs"}
                                 alt="Mark and his two dogs"
                                 sizes={saSizes}
                             />
-                        </BadgeWrapper>
-                    </A>
+                        </A>
+                    </BadgeWrapper>
+
                     <A href="https://www.youracclaim.com/badges/aa405a9b-115f-463f-808f-623de8717ffe/public_url">
                         <BadgeWrapper>
                             <StyledImg
@@ -336,6 +336,7 @@ const SkillsSection = styled.section`
 const StyledH3 = styled.h3`
     margin-top: 0;
     color: white;
+    display: block;
 `;
 
 const BadgeWrapper = styled.div`

@@ -6,18 +6,22 @@ import Hamburger from "./hamburger";
 import { theme } from "../styles/themes";
 import Helmet from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const isActive = ({ isCurrent }) => {
     return isCurrent ? { className: "active" } : {};
 };
 
 export default ({ children }) => {
-    const [selectedTheme, setSelectedTheme] = useState({
-        ...theme,
-        tertiary: theme.colors[theme.colorIndex],
-        before: theme.colors[5],
-        after: theme.colors[1],
-    });
+    const [selectedTheme, setSelectedTheme] = useLocalStorage(
+        "mark.codes.color",
+        {
+            ...theme,
+            tertiary: theme.colors[theme.colorIndex],
+            before: theme.colors[5],
+            after: theme.colors[1],
+        }
+    );
 
     const {
         Background: { publicURL: backgroundURL },
@@ -34,9 +38,9 @@ export default ({ children }) => {
 
         tertiary =
             theme.colors[
-                theme.colorIndex === 0
-                    ? (theme.colorIndex = 5)
-                    : --theme.colorIndex
+                theme.colorIndex === 5
+                    ? (theme.colorIndex = 0)
+                    : ++theme.colorIndex
             ];
 
         setSelectedTheme({
@@ -208,7 +212,7 @@ const GlobalStyle = createGlobalStyle`
 
 const LayoutDiv = styled.div`
     margin: 0 auto 0 auto;
-    max-width: 1100px;
+    max-width: 900px;
     padding: 2.5rem 3rem 1rem 3rem;
     padding-top: 2.5rem;
     border-left: 3px solid ${(props) => props.theme.tertiary};
@@ -224,11 +228,8 @@ const LayoutDiv = styled.div`
     h4 {
         margin: 0.5rem;
     }
-    @media only screen and (max-width: 500px) {
-        padding: 0 1rem;
-    }
 
-    @media only screen and (max-width: 1100px) {
+    @media only screen and (max-width: 900px) {
         border: none;
     }
 `;
