@@ -42,9 +42,8 @@ export default ({ data }) => {
                 <Typewriter text="Hello :)" />
                 <P>
                     I'm Mark; a full stack web developer, avid learner, and
-                    focused team player. I'm passionate about developing fast
-                    and scalable software products. I have experience working on
-                    diverse cross functional teams with web developers, mobile
+                    focused team player. I have experience working on diverse
+                    cross functional teams with web developers, mobile
                     developers, and UX/UI designers.
                 </P>
                 <P>
@@ -52,7 +51,8 @@ export default ({ data }) => {
                     <span role="img" aria-label="heart emoji">
                         🧡
                     </span>{" "}
-                    to work with JavaScript and Python among other things.
+                    to work with JavaScript and Python but I'm always excited to
+                    learn new things!
                 </P>
                 <P>
                     Outside of programming, you might find me reading a book, at
