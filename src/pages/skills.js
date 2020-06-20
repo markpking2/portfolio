@@ -293,7 +293,7 @@ export const query = graphql`
             relativePath: { regex: "/aws-certified-cloud-practitioner.png/" }
         ) {
             childImageSharp {
-                sizes(maxWidth: 500) {
+                sizes(maxWidth: 300) {
                     ...GatsbyImageSharpSizes
                 }
             }
@@ -304,7 +304,7 @@ export const query = graphql`
             }
         ) {
             childImageSharp {
-                sizes(maxWidth: 500) {
+                sizes(maxWidth: 300) {
                     ...GatsbyImageSharpSizes
                 }
             }
@@ -336,7 +336,6 @@ const SkillsSection = styled.section`
 const StyledH3 = styled.h3`
     margin-top: 0;
     color: white;
-    display: block;
 `;
 
 const BadgeWrapper = styled.div`

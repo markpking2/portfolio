@@ -40,7 +40,7 @@ export default ({ text }) => {
     return (
         <div>
             <Typewriter>
-                <h3>{typed}</h3>
+                <StyledH3>{typed}</StyledH3>
             </Typewriter>
         </div>
     );
@@ -64,4 +64,11 @@ const Typewriter = styled.div`
             border-color: ${(props) => props.theme.primary};
         }
     }
+`;
+
+const StyledH3 = styled.h3`
+    margin-top: 0;
+    color: white;
+    display: inline;
+    color: ${(props) => props.theme.primary};
 `;

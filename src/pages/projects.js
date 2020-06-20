@@ -3,11 +3,13 @@ import Layout from "../components/layout";
 import Typewriter from "../components/typewriter";
 import Project from "../components/project";
 import projectList from "../data/projects.json";
+import ImageView from "../components/imageView";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 
 export default ({ data }) => {
     const [touched, setTouched] = useState(false);
+    const [viewedImage, setViewedImage] = useState(null);
     const { edges: projectImages } = data.ProjectImages;
     const { edges: projectStaticImages } = data.StaticProjectImages;
 
@@ -38,6 +40,12 @@ export default ({ data }) => {
                 <meta property="og:url" content="https://mark.codes/projects" />
             </Helmet>
             <Layout>
+                {viewedImage && (
+                    <ImageView
+                        setViewedImage={setViewedImage}
+                        image={viewedImage}
+                    />
+                )}
                 <Typewriter text="Things I've worked on..." />
                 {projectList &&
                     projectList.map((project, i) => {
@@ -55,6 +63,7 @@ export default ({ data }) => {
                                 project={project}
                                 touched={touched}
                                 setTouched={setTouched}
+                                setViewedImage={setViewedImage}
                                 staticImages={projectStaticImages
                                     .filter((node) =>
                                         node.node.name.match(
@@ -64,11 +73,9 @@ export default ({ data }) => {
                                             )
                                         )
                                     )
-                                    .map((node) => ({
-                                        url: node.node.publicURL,
-                                        name: node.node.name,
-                                    }))
-                                    .sort((a, b) => (a.name > b.name ? 1 : -1))}
+                                    .sort((a, b) =>
+                                        a.node.name > b.node.name ? 1 : -1
+                                    )}
                             />
                         );
                     })}
@@ -88,8 +95,8 @@ export const query = graphql`
                     relativePath
                     name
                     childImageSharp {
-                        sizes(maxWidth: 1200) {
-                            ...GatsbyImageSharpSizes
+                        sizes(maxWidth: 1000) {
+                            ...GatsbyImageSharpSizes_withWebp
                         }
                     }
                 }
@@ -99,8 +106,12 @@ export const query = graphql`
         StaticProjectImages: allFile(filter: { extension: { eq: "png" } }) {
             edges {
                 node {
-                    publicURL
                     name
+                    childImageSharp {
+                        fluid {
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
                 }
             }
         }

@@ -4,9 +4,17 @@ import Img from "gatsby-image/withIEPolyfill";
 import { LinkIcon, Github } from "../assets/icons";
 import Carousel from "./carousel";
 
-export default ({ sizes, project, touched, setTouched, staticImages }) => {
+export default ({
+    sizes,
+    project,
+    touched,
+    setTouched,
+    setViewedImage,
+    staticImages,
+}) => {
     const ref = useRef();
     const [dimensions, setDimensions] = useState({});
+
     useLayoutEffect(() => {
         setDimensions(ref.current && ref.current.getBoundingClientRect());
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,20 +33,29 @@ export default ({ sizes, project, touched, setTouched, staticImages }) => {
                 >
                     {sizes.map((size, i) => {
                         return (
-                            <div key={i}>
-                                <a
-                                    href={`${staticImages[i].url}`}
-                                    target="blank"
-                                >
-                                    <StyledImg
-                                        title={project.name}
-                                        alt="Screenshot of project"
-                                        sizes={size}
-                                        frequency={project.frequency}
-                                        objectFit="contain"
-                                        width={dimensions.width}
-                                    />
-                                </a>
+                            <div
+                                role="button"
+                                onClick={() => {
+                                    setViewedImage(
+                                        staticImages[i]?.node?.childImageSharp
+                                            .fluid
+                                    );
+                                }}
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    e.preventDefault();
+                                    setViewedImage(null);
+                                }}
+                                key={i}
+                            >
+                                <StyledImg
+                                    title={project.name}
+                                    alt="Screenshot of project"
+                                    sizes={size}
+                                    frequency={project.frequency}
+                                    objectFit="contain"
+                                    width={dimensions.width}
+                                />
                             </div>
                         );
                     })}
@@ -105,6 +122,7 @@ const StyledImg = styled(Img)`
     min-width: ${({ maxWidth }) => maxWidth}px;
     max-height: 750px;
     padding: 0 0.3rem;
+    cursor: zoom-in;
 `;
 
 const StyledLinkIcon = styled(LinkIcon)`

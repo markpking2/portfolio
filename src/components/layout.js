@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "gatsby";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Email, Github, Linkedin, Resume, Bucket } from "../assets/icons";
@@ -220,8 +220,7 @@ const LayoutDiv = styled.div`
     background: ${(props) => props.theme.secondary};
 
     h1,
-    h2,
-    h3 {
+    h2 {
         display: inline;
         color: ${(props) => props.theme.primary};
     }
@@ -328,6 +327,7 @@ const Footer = styled.footer`
     width: 100%;
     height: 75px;
     text-align: center;
+    margin-top: 3rem;
     color: ${(props) => props.theme.primary};
 `;
 
