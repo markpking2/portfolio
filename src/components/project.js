@@ -4,23 +4,18 @@ import Img from "gatsby-image/withIEPolyfill";
 import { LinkIcon, Github } from "../assets/icons";
 import Carousel from "./carousel";
 
-export default ({ sizes, project, touched, setTouched }) => {
+export default ({ sizes, project, touched, setTouched, staticImages }) => {
+    console.log(staticImages);
     const ref = useRef();
     const [dimensions, setDimensions] = useState({});
     useLayoutEffect(() => {
         setDimensions(ref.current && ref.current.getBoundingClientRect());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ref.current]);
+
     return (
         <ProjectContainer>
-            {project.demo ? (
-                <ProjectLink href={project.demo}>
-                    <h2>{project.name}</h2>
-                    <StyledLinkIcon />
-                </ProjectLink>
-            ) : (
-                <h2>{project.name}</h2>
-            )}
+            <h2>{project.name}</h2>
             <div ref={ref}>
                 <Carousel
                     top={dimensions.height / 2 - 22}
@@ -29,16 +24,25 @@ export default ({ sizes, project, touched, setTouched }) => {
                     touched={touched}
                     setTouched={setTouched}
                 >
-                    {sizes.map((size, i) => (
-                        <StyledImg
-                            title={project.name}
-                            key={i}
-                            alt="Screenshot of project"
-                            sizes={size}
-                            maxWidth={project.maxWidth}
-                            objectFit="contain"
-                        />
-                    ))}
+                    {sizes.map((size, i) => {
+                        return (
+                            <div key={i}>
+                                <a
+                                    href={`${staticImages[i].url}`}
+                                    target="blank"
+                                >
+                                    <StyledImg
+                                        title={project.name}
+                                        alt="Screenshot of project"
+                                        sizes={size}
+                                        frequency={project.frequency}
+                                        objectFit="contain"
+                                        width={dimensions.width}
+                                    />
+                                </a>
+                            </div>
+                        );
+                    })}
                 </Carousel>
             </div>
             <div>
@@ -51,8 +55,20 @@ export default ({ sizes, project, touched, setTouched }) => {
                 <strong>Description: </strong>
                 {project.description}
             </P>
+            {project.demo && (
+                <LinkDiv>
+                    <a href={project.demo}>
+                        <LinkSpan>
+                            <strong>Live Demo</strong>
+                        </LinkSpan>
+                        <LinkSpan>
+                            <StyledLinkIcon />
+                        </LinkSpan>
+                    </a>
+                </LinkDiv>
+            )}
             {project.frontend && (
-                <RepoDiv>
+                <LinkDiv>
                     <a href={project.frontend}>
                         <LinkSpan>
                             <strong>Front end repository</strong>
@@ -61,10 +77,10 @@ export default ({ sizes, project, touched, setTouched }) => {
                             <StyledGithub />
                         </LinkSpan>
                     </a>
-                </RepoDiv>
+                </LinkDiv>
             )}
             {project.backend && (
-                <RepoDiv>
+                <LinkDiv>
                     <a href={project.backend}>
                         <LinkSpan>
                             <strong>Back end repository</strong>
@@ -73,7 +89,7 @@ export default ({ sizes, project, touched, setTouched }) => {
                             <StyledGithub />
                         </LinkSpan>
                     </a>
-                </RepoDiv>
+                </LinkDiv>
             )}
         </ProjectContainer>
     );
@@ -86,15 +102,16 @@ const ProjectContainer = styled.div`
 
 const StyledImg = styled(Img)`
     margin: 0;
-    min-width: ${({ maxWidth }) => maxWidth}%;
+    width: ${({ width, frequency }) => width / frequency}px;
+    min-width: ${({ maxWidth }) => maxWidth}px;
     max-height: 750px;
     padding: 0 0.3rem;
 `;
 
 const StyledLinkIcon = styled(LinkIcon)`
     display: inline;
-    margin-left: 1rem;
-    fill: ${(props) => props.theme.tertiary};
+    margin-left: 0.5rem;
+    fill: white;
 `;
 
 const H4 = styled.h4`
@@ -108,31 +125,17 @@ const P = styled.p`
     color: ${(props) => props.theme.primary};
 `;
 
-const ProjectLink = styled.a`
-    text-decoration: none;
-    background-image: none;
-
-    h2 {
-        display: inline;
-        text-shadow: none;
-        color: ${(props) => props.theme.tertiary};
-    }
-
-    &:hover {
-        opacity: 0.5;
-    }
-`;
-
 const StyledSpan = styled.span`
     color: ${(props) => props.theme.primary};
 `;
 
 const LinkSpan = styled.span`
+    font-size: 1.2rem;
     color: ${(props) => props.theme.tertiary};
     text-shadow: none;
 `;
 
-const RepoDiv = styled.div`
+const LinkDiv = styled.div`
     display: flex;
     align-items: center;
 

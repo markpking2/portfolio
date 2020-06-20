@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import {
-    Email,
-    Github,
-    Linkedin,
-    Resume,
-    Name,
-    ArrowLeft,
-    ArrowRight,
-} from "../assets/icons";
+import { Email, Github, Linkedin, Resume, Bucket } from "../assets/icons";
 import Hamburger from "./hamburger";
 import { theme } from "../styles/themes";
 import Helmet from "react-helmet";
+import { graphql, useStaticQuery } from "gatsby";
 
 const isActive = ({ isCurrent }) => {
     return isCurrent ? { className: "active" } : {};
@@ -26,31 +19,29 @@ export default ({ children }) => {
         after: theme.colors[1],
     });
 
-    function colorChange(before) {
-        let tertiary;
-        if (before) {
-            tertiary =
-                theme.colors[
-                    theme.colorIndex === 0
-                        ? (theme.colorIndex = 5)
-                        : --theme.colorIndex
-                ];
-        } else {
-            tertiary =
-                theme.colors[
-                    theme.colorIndex === 5
-                        ? (theme.colorIndex = 0)
-                        : ++theme.colorIndex
-                ];
+    const {
+        Background: { publicURL: backgroundURL },
+    } = useStaticQuery(graphql`
+        query BackgroundImage {
+            Background: file(absolutePath: { regex: "/code_background/" }) {
+                publicURL
+            }
         }
+    `);
+
+    function colorChange() {
+        let tertiary;
+
+        tertiary =
+            theme.colors[
+                theme.colorIndex === 0
+                    ? (theme.colorIndex = 5)
+                    : --theme.colorIndex
+            ];
 
         setSelectedTheme({
             ...theme,
             tertiary,
-            before:
-                theme.colorIndex === 0
-                    ? theme.colors[5]
-                    : theme.colors[theme.colorIndex - 1],
             after:
                 theme.colorIndex === 5
                     ? theme.colors[0]
@@ -59,7 +50,7 @@ export default ({ children }) => {
     }
     return (
         <ThemeProvider theme={selectedTheme}>
-            <GlobalStyle />
+            <GlobalStyle backgroundURL={backgroundURL} />
             <Helmet>
                 <link
                     rel="apple-touch-icon"
@@ -92,21 +83,22 @@ export default ({ children }) => {
                 <Content>
                     <Header>
                         <NameWrapper>
-                            <StyledArrowLeft
-                                onClick={() => colorChange(true)}
-                            />
                             <StyledLink to="/">
-                                <StyledName />
+                                <StyledName>Mark King</StyledName>
+                                <SubheadingWrapper>
+                                    <Subheading>
+                                        Highly adaptable full stack engineer
+                                        with a passion for developing fast and
+                                        scalable web applications.
+                                    </Subheading>
+                                </SubheadingWrapper>
                             </StyledLink>
-                            <StyledArrowRight
-                                onClick={() => colorChange(false)}
-                            />
                         </NameWrapper>
                         <Icons>
                             <li>
                                 <StyledLink
                                     id="resume"
-                                    to={"/resume"}
+                                    to="/resume"
                                     title="Resume"
                                 >
                                     <StyledResume />
@@ -137,6 +129,7 @@ export default ({ children }) => {
                                 </a>
                             </li>
                         </Icons>
+
                         <Links>
                             <StyledLink to="/" getProps={isActive}>
                                 About
@@ -150,24 +143,30 @@ export default ({ children }) => {
                             <StyledLink to="/contact/" getProps={isActive}>
                                 Contact
                             </StyledLink>
+                            <StyledLink to="/resume" getProps={isActive}>
+                                Resume
+                            </StyledLink>
                         </Links>
                     </Header>
                     {children}
                 </Content>
                 <Footer>
+                    <span>&copy; Mark King 2020</span>
+                    <br />
                     <span>
-                        Developed with{" "}
-                        <span role="img" aria-label="heart emoji">
-                            🧡
-                        </span>{" "}
-                        using GatsbyJS in{" "}
+                        Developed with GatsbyJS in{" "}
                         <span role="img" aria-label="palm tree emoji">
                             🌴
                         </span>{" "}
-                        Florida, US. Hosted on AWS.
+                        Florida, US. Hosted on AWS S3.
                     </span>
-                    <br />
-                    <span>&copy; Mark King 2020</span>
+                    <BucketWrapper
+                        onClick={() => {
+                            colorChange();
+                        }}
+                    >
+                        <StyledBucket />
+                    </BucketWrapper>
                 </Footer>
             </LayoutDiv>
         </ThemeProvider>
@@ -176,7 +175,7 @@ export default ({ children }) => {
 
 const GlobalStyle = createGlobalStyle`
     html {
-        @media only screen and (max-width: 530px) {
+        @media only screen and (max-width: 651px) {
             font-size: 106.25%;
             line-height: 24.65px;
         }
@@ -187,6 +186,10 @@ const GlobalStyle = createGlobalStyle`
     #___gatsby {
         height: 100%;
         background-color: ${(props) => props.theme.secondary};
+        background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85) ), url(${({
+            backgroundURL,
+        }) => backgroundURL});
+        background-size: cover;
     }
 
     body {
@@ -204,9 +207,13 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const LayoutDiv = styled.div`
-    margin: 2.5rem auto 0 auto;
-    max-width: 950px;
-    padding: 0 3rem;
+    margin: 0 auto 0 auto;
+    max-width: 1100px;
+    padding: 2.5rem 3rem 1.5rem 3rem;
+    padding-top: 2.5rem;
+    border-left: 3px solid ${(props) => props.theme.tertiary};
+    border-right: 3px solid ${(props) => props.theme.tertiary};
+    background: ${(props) => props.theme.secondary};
 
     h1,
     h2 {
@@ -222,7 +229,7 @@ const LayoutDiv = styled.div`
 `;
 
 const Header = styled.header`
-    @media only screen and (max-width: 750px) {
+    @media only screen and (max-width: 800px) {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -272,7 +279,7 @@ const Icons = styled.ul`
             opacity: 0.5;
         }
 
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 651px) {
             width: 2.2rem;
             height: 2.2rem;
         }
@@ -281,7 +288,7 @@ const Icons = styled.ul`
 
 const Links = styled.div`
   width: 100%;
-  margin: 1rem 0;
+  margin: 0 0 1.5rem 0;
   padding: 0;
   font-size: 1.2rem;
   a {
@@ -303,7 +310,7 @@ const Links = styled.div`
           opacity: 1
       }
   }
-  @media only screen and (max-width: 450px) {
+  @media only screen and (max-width: 650px) {
     display: none;
   }
 `;
@@ -318,19 +325,23 @@ const Footer = styled.footer`
     color: ${(props) => props.theme.primary};
 `;
 
-const StyledName = styled(Name)`
-    fill: ${(props) => props.theme.tertiary};
-    width: 100%;
-    max-width: 300px;
-    max-height: 80px;
+const StyledName = styled.h1`
+    font-family: Serif;
+`;
 
-    @media only screen and (max-width: 500px) {
-        max-width: 250px;
-    }
+const Subheading = styled.h6`
+    display: inline-block;
+    color: white;
+    margin-top: 0.75rem;
+    font-family: "Quattrocento Sans", sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+`;
 
-    @media only screen and (max-width: 380px) {
-        max-width: 200px;
-    }
+const SubheadingWrapper = styled.div`
+    max-width: 450px;
 `;
 
 const StyledGithub = styled(Github)`
@@ -349,35 +360,24 @@ const StyledResume = styled(Resume)`
     fill: ${(props) => props.theme.resume};
 `;
 
-const StyledArrowLeft = styled(ArrowLeft)`
-    min-width: 40px;
-    min-height: 40px;
-    fill: ${(props) => props.theme.before};
-
+const BucketWrapper = styled.div`
+    position: relative;
     &:hover {
-        opacity: 0.5;
         cursor: pointer;
-    }
-
-    @media only screen and (max-width: 380px) {
-        min-width: 30px;
-        min-height: 30px;
+        opacity: 0.8;
     }
 `;
 
-const StyledArrowRight = styled(ArrowRight)`
-    min-width: 40px;
-    min-height: 40px;
-    fill: ${(props) => props.theme.after};
+const StyledBucket = styled(Bucket)`
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    bottom: 10px;
+    fill: ${(props) => props.theme.tertiary};
 
-    &:hover {
-        opacity: 0.5;
-        cursor: pointer;
-    }
-
-    @media only screen and (max-width: 380px) {
-        min-width: 30px;
-        min-height: 30px;
+    @media only screen and (max-width: 800px) {
+        bottom: 60px;
     }
 `;
 

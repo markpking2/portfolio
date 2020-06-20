@@ -9,6 +9,8 @@ import { graphql } from "gatsby";
 export default ({ data }) => {
     const [touched, setTouched] = useState(false);
     const { edges: projectImages } = data.ProjectImages;
+    const { edges: projectStaticImages } = data.StaticProjectImages;
+
     return (
         <>
             <Helmet>
@@ -33,7 +35,7 @@ export default ({ data }) => {
                 <meta property="og:url" content="https://mark.codes/projects" />
             </Helmet>
             <Layout>
-                <Typewriter text="Projects" />
+                <Typewriter text="Things I've worked on..." />
                 {projectList &&
                     projectList.map((project, i) => {
                         const images = projectImages.filter((image, i) => {
@@ -50,6 +52,20 @@ export default ({ data }) => {
                                 project={project}
                                 touched={touched}
                                 setTouched={setTouched}
+                                staticImages={projectStaticImages
+                                    .filter((node) =>
+                                        node.node.name.match(
+                                            new RegExp(
+                                                `${project.imageQuery}`,
+                                                "g"
+                                            )
+                                        )
+                                    )
+                                    .map((node) => ({
+                                        url: node.node.publicURL,
+                                        name: node.node.name,
+                                    }))
+                                    .sort((a, b) => (a.name > b.name ? 1 : -1))}
                             />
                         );
                     })}
@@ -69,10 +85,19 @@ export const query = graphql`
                     relativePath
                     name
                     childImageSharp {
-                        sizes(maxWidth: 850) {
+                        sizes(maxWidth: 1200) {
                             ...GatsbyImageSharpSizes
                         }
                     }
+                }
+            }
+        }
+
+        StaticProjectImages: allFile(filter: { extension: { eq: "png" } }) {
+            edges {
+                node {
+                    publicURL
+                    name
                 }
             }
         }

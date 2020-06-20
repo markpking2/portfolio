@@ -15,7 +15,8 @@
             "ourcommunitycal6.png",
             "ourcommunitycal7.png"
         ],
-        "maxWidth": 100
+        "imageQuery": "ourcommunitycal",
+        "frequency": 1
     },
     {
         "name": "Dev Desk",
@@ -30,7 +31,8 @@
             "devdesk4.png",
             "devdesk5.png"
         ],
-        "maxWidth": 100
+        "imageQuery": "devdesk",
+        "frequency": 1
     },
     {
         "name": "Create Your Own Adventure",
@@ -44,7 +46,8 @@
             "createyouradventure3.png",
             "createyouradventure4.png"
         ],
-        "maxWidth": 100
+        "imageQuery": "createyouradventure",
+        "frequency": 1
     },
     {
         "name": "Ride For Life",
@@ -59,7 +62,8 @@
             "rideforlife4.png",
             "rideforlife5.png"
         ],
-        "maxWidth": 100
+        "imageQuery": "rideforlife",
+        "frequency": 1
     },
     {
         "name": "The Legend of Fnu",
@@ -76,7 +80,8 @@
             "legendoffnu6.png",
             "legendoffnu7.png"
         ],
-        "maxWidth": 50
+        "imageQuery": "legendoffnu",
+        "frequency": 2
     },
     {
         "name": "Empowered Conversation",
@@ -91,6 +96,7 @@
             "empoweredconversation4.png",
             "empoweredconversation5.png"
         ],
-        "maxWidth": 100
+        "imageQuery": "empoweredconversation",
+        "frequency": 1
     }
 ]

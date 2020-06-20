@@ -40,6 +40,9 @@ export default () => {
                                     Contact
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/resume/">Resume</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -109,9 +112,6 @@ const MenuWrapper = styled.div`
         padding: 1rem;
         background: ${(props) => props.theme.tertiary};
         border-radius: 0px 0px 0px 5px;
-        border-size: 2px;
-        border-style: solid;
-        border-color: white;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -158,9 +158,9 @@ const MenuWrapper = styled.div`
 
         > div {
             background: ${(props) => props.theme.hamburgerMenuBackground};
-            border-radius: 25%;
+            border-radius: 5%;
             width: 200vw;
-            height: 200vw;
+            height: 100%;
             display: flex;
             flex: none;
             align-items: center;
@@ -211,7 +211,7 @@ const MenuWrapper = styled.div`
         }
     }
 
-    @media only screen and (min-width: 451px) {
+    @media only screen and (min-width: 651px) {
         display: none;
     }
 `;

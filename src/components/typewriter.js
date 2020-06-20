@@ -24,7 +24,7 @@ export default ({ text }) => {
             setTimeout(async () => {
                 await typeWriter(string.slice(1));
                 return resolve();
-            }, 300);
+            }, 250);
         });
     }
 

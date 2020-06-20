@@ -76,14 +76,15 @@ export default ({ data }) => {
                 <link rel="canonical" href="https://mark.codes" />
             </Helmet>
             <Layout>
-                <Typewriter text="Contact" />
+                <Typewriter text="Let's talk!" />
                 <StyledForm onSubmit={handleSubmit(onSubmit)}>
                     <h3 style={{ margin: "0.5rem 0" }}>
-                        Feel free to send me a message!
+                        Send me a message and I will get back to you ASAP.
                     </h3>
                     {responseMessage === "success" && (
                         <StyledH3>
-                            Message sent successfully!{" "}
+                            Message sent successfully. I will get back in touch
+                            with you soon!{" "}
                             <span role="img" aria-label="Sad emoji">
                                 ✔️
                             </span>
@@ -180,7 +181,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
 
   h3 {
     color: ${(props) => props.theme.primary};

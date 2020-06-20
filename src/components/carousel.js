@@ -37,11 +37,11 @@ export default function Carousel({
                     }}
                 />
             </SwipeContainer>
-            <UlBg>
-                <StyledUl ref={unorderedListEl} opacity={touched ? 1 : 0.1}>
-                    {children}
-                </StyledUl>
-            </UlBg>
+
+            <StyledUl ref={unorderedListEl} opacity={touched ? 1 : 0.1}>
+                {children}
+            </StyledUl>
+
             <Button
                 lb={false}
                 unOrderedListRef={unorderedListEl}
@@ -65,7 +65,6 @@ function Button({
     left,
     right,
     lb,
-    touched,
     setTouched,
 }) {
     const [show, setShow] = useState(false);
@@ -78,8 +77,7 @@ function Button({
             } else {
                 const sW = unOrderedListRef.current.scrollWidth;
                 const cW = unOrderedListRef.current.clientWidth;
-
-                setShow(xAxis < sW - cW);
+                setShow(xAxis === 0 || xAxis < sW - cW);
             }
         }
 
@@ -182,8 +180,6 @@ const StyledUl = styled.div`
         display: none;
     }
 `;
-
-const UlBg = styled.div``;
 
 const SwipeContainer = styled.div`
     pointer-events: none;
