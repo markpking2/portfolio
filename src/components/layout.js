@@ -209,14 +209,15 @@ const GlobalStyle = createGlobalStyle`
 const LayoutDiv = styled.div`
     margin: 0 auto 0 auto;
     max-width: 1100px;
-    padding: 2.5rem 3rem 1.5rem 3rem;
+    padding: 2.5rem 3rem 1rem 3rem;
     padding-top: 2.5rem;
     border-left: 3px solid ${(props) => props.theme.tertiary};
     border-right: 3px solid ${(props) => props.theme.tertiary};
     background: ${(props) => props.theme.secondary};
 
     h1,
-    h2 {
+    h2,
+    h3 {
         display: inline;
         color: ${(props) => props.theme.primary};
     }
@@ -225,6 +226,10 @@ const LayoutDiv = styled.div`
     }
     @media only screen and (max-width: 500px) {
         padding: 0 1rem;
+    }
+
+    @media only screen and (max-width: 1100px) {
+        border: none;
     }
 `;
 

@@ -29,17 +29,13 @@ export default ({ text }) => {
     }
 
     return (
-        <TypewriterContainer length={text.length}>
-            <Typewriter length={typed.length}>
-                <h2>{typed}</h2>
+        <div>
+            <Typewriter>
+                <h3>{typed}</h3>
             </Typewriter>
-        </TypewriterContainer>
+        </div>
     );
 };
-
-const TypewriterContainer = styled.div`
-    width: ${({ length }) => length}rem;
-`;
 
 const Typewriter = styled.div`
     display: inline-block;
