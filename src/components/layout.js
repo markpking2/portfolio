@@ -18,7 +18,6 @@ export default ({ children }) => {
         before: theme.colors[5],
         after: theme.colors[1],
     });
-    console.log(selectedTheme);
 
     const {
         Background: { publicURL: backgroundURL },

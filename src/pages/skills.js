@@ -70,8 +70,10 @@ export default ({ data }) => {
                     <BadgeWrapper>
                         <A href="https://www.youracclaim.com/badges/2fd6df00-8f74-4116-b2f6-ebb2b18c6a48/public_url">
                             <StyledImg
-                                title={"Mark and his two dogs"}
-                                alt="Mark and his two dogs"
+                                title={
+                                    "AWS Certified Solutions Architect Associate"
+                                }
+                                alt="AWS Certified Solutions Architect Associate Badge"
                                 sizes={saSizes}
                             />
                         </A>
@@ -80,8 +82,8 @@ export default ({ data }) => {
                     <A href="https://www.youracclaim.com/badges/aa405a9b-115f-463f-808f-623de8717ffe/public_url">
                         <BadgeWrapper>
                             <StyledImg
-                                title={"Mark and his two dogs"}
-                                alt="Mark and his two dogs"
+                                title={"AWS Certified Cloud Practitioner"}
+                                alt="AWS Certified Cloud Practitioner Badge"
                                 sizes={cpSizes}
                             />
                         </BadgeWrapper>
