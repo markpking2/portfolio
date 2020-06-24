@@ -122,7 +122,7 @@ export default ({ children }) => {
                             </li>
                             <li>
                                 <a
-                                    href="mailto:mark@mark.codes"
+                                    href="mailto:markpking2@gmail.com"
                                     title="Mark's Email"
                                 >
                                     <StyledEmail fill={theme.primary} />
