@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import Typewriter from "../components/typewriter";
 import Project from "../components/project";
 import projectList from "../data/projects.json";
+import PortfolioProject from "../components/portfolioProject";
 import ImageView from "../components/imageView";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
@@ -11,7 +12,12 @@ export default ({ data }) => {
     const [touched, setTouched] = useState(false);
     const [viewedImage, setViewedImage] = useState(null);
     const { edges: projectImages } = data.ProjectImages;
+    const { edges: mobileProjectImages } = data.MobileProjectImages;
     const { edges: projectStaticImages } = data.StaticProjectImages;
+    const { publicURL: lighthouseGif } = data.Lighthouse;
+    const { publicURL: lighthouseStill } = data.LighthouseStill;
+    console.log(projectImages.map((p) => p.node.name));
+    console.log(mobileProjectImages.map((p) => p.node.name));
 
     return (
         <>
@@ -47,18 +53,21 @@ export default ({ data }) => {
                     />
                 )}
                 <Typewriter text="Things I've worked on..." />
+                <PortfolioProject gif={lighthouseGif} still={lighthouseStill} />
                 {projectList &&
                     projectList.map((project, i) => {
-                        const images = projectImages.filter((image, i) => {
-                            return project.images.includes(
-                                image.node.relativePath
-                            );
-                        });
+                        const images = projectImages
+                            .concat(mobileProjectImages)
+                            .filter((image, i) => {
+                                return project.images.includes(
+                                    image.node.relativePath
+                                );
+                            });
                         return (
                             <Project
                                 key={project.name}
                                 sizes={images.map(
-                                    (image) => image.node.childImageSharp.sizes
+                                    (image) => image.node.childImageSharp.fluid
                                 )}
                                 project={project}
                                 touched={touched}
@@ -89,21 +98,50 @@ export const query = graphql`
     query projectImages {
         ProjectImages: allFile(
             sort: { order: ASC, fields: [absolutePath] }
-            filter: { relativePath: { regex: "/.*.png/" } }
+            filter: { relativePath: { regex: "/^((?!.*mobile.*).)*.png$/" } }
         ) {
             edges {
                 node {
                     relativePath
                     name
                     childImageSharp {
-                        sizes(maxWidth: 1000) {
-                            ...GatsbyImageSharpSizes_withWebp
+                        fluid(
+                            maxWidth: 800
+                            srcSetBreakpoints: [
+                                200
+                                300
+                                400
+                                500
+                                600
+                                700
+                                800
+                            ]
+                        ) {
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
             }
         }
-
+        MobileProjectImages: allFile(
+            sort: { order: ASC, fields: [absolutePath] }
+            filter: { relativePath: { regex: "/^(mobile.*).png$/" } }
+        ) {
+            edges {
+                node {
+                    relativePath
+                    name
+                    childImageSharp {
+                        fluid(
+                            maxWidth: 400
+                            srcSetBreakpoints: [100, 200, 300, 400]
+                        ) {
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
+                }
+            }
+        }
         StaticProjectImages: allFile(filter: { extension: { eq: "png" } }) {
             edges {
                 node {
@@ -115,6 +153,14 @@ export const query = graphql`
                     }
                 }
             }
+        }
+        Lighthouse: file(relativePath: { regex: "/lighthouse.gif/" }) {
+            publicURL
+        }
+        LighthouseStill: file(
+            relativePath: { regex: "/lighthouseStill.png/" }
+        ) {
+            publicURL
         }
     }
 `;

@@ -16,7 +16,16 @@
             "ourcommunitycal7.png"
         ],
         "imageQuery": "ourcommunitycal",
-        "frequency": 1
+        "frequency": 1,
+        "bullets": [
+            "Developed a full stack application and collaborated on a cross-functional team that included 5 web developers, 4 native mobile developers, and 1 UX designer.",
+            "Communicated remotely using Slack/Zoom and attended daily stand-up meetings to talk about daily project goals, features, and blockers.",
+            "Deployed a Node.js Apollo GraphQL backend on Heroku with 14 resolvers for CRUD functionality to minimize redundancy of data fetched through API calls.",
+            "Designed PostgreSQL database schema for users, events, locations, organizations, and neighborhoods with Prisma.",
+            "Implemented server-side searching through 1 query resolver; allowing users to filter events by GPS proximity, date range, keywords, tags, and price utilizing a Porter Stemming algorithm and Turf.js.",
+            "Integrated Auth0 for single sign on capabilities; granting users the ability to login/register with Google, Facebook, and email.",
+            "Developed frontend web application using React, Webpack, SASS, and Apollo Client for precise state management and caching."
+        ]
     },
     {
         "name": "Dev Desk",
@@ -32,7 +41,13 @@
             "devdesk5.png"
         ],
         "imageQuery": "devdesk",
-        "frequency": 1
+        "frequency": 1,
+        "bullets": [
+            "Produced a REST API with 40+ endpoints using Node.js, Express.js, and PostgreSQL, and modeled database schema/migrations using Knex.js for users, tickets, comments, and replies.",
+            "Combined JSON Web Tokens and Bcrypt to authenticate users and hash passwords.",
+            "Defined endpoints allowing users to simultaneously upload images/videos with Express-fileupload and Cloudinary.",
+            "Integrated Slack API to create a bot that allows users to easily see, open, and answer tickets from Slack."
+        ]
     },
     {
         "name": "Create Your Own Adventure",
@@ -47,7 +62,14 @@
             "createyouradventure4.png"
         ],
         "imageQuery": "createyouradventure",
-        "frequency": 1
+        "frequency": 1,
+        "bullets": [
+            "Collaborated with 7 other developers for 24+ hours.",
+            "Developed and deployed backend API and PostgreSQL database on Heroku.",
+            "Integrated authentication using bcrypt and JSON Web Tokens.",
+            "Implemented SQL transactions and necessary endpoints for users to create story graphs and collaborate with others.",
+            "Ate a ton of Chinese food!"
+        ]
     },
     {
         "name": "Ride For Life",
@@ -63,7 +85,12 @@
             "rideforlife5.png"
         ],
         "imageQuery": "rideforlife",
-        "frequency": 1
+        "frequency": 1,
+        "bullets": [
+            "Built a React web application using Redux and Thunk middleware to centralize and simplify state management with 30+ reducers.",
+            "Sent and retrieved data, and authenticated with Node.js/Express.js API using Axios.",
+            "Incorporated JSON Web Tokens and local storage to store encrypted user information on the client-side."
+        ]
     },
     {
         "name": "The Legend of Fnu",
@@ -72,16 +99,22 @@
         "frontend": "https://github.com/winning-team/react-native-frontend",
         "backend": "https://github.com/winning-team/backend",
         "images": [
-            "legendoffnu1.png",
-            "legendoffnu2.png",
-            "legendoffnu3.png",
-            "legendoffnu4.png",
-            "legendoffnu5.png",
-            "legendoffnu6.png",
-            "legendoffnu7.png"
+            "mobilelegendoffnu1.png",
+            "mobilelegendoffnu2.png",
+            "mobilelegendoffnu3.png",
+            "mobilelegendoffnu4.png",
+            "mobilelegendoffnu5.png",
+            "mobilelegendoffnu6.png",
+            "mobilelegendoffnu7.png"
         ],
         "imageQuery": "legendoffnu",
-        "frequency": 2
+        "frequency": 2,
+        "bullets": [
+            "Led a team with 2 other developers to produce an Android and iOS mobile application using React Native.",
+            "Developed a Python Django API backend utilizing REST architectural patterns, Django authentication, and PostgreSQL for game state and data persistence.",
+            "Implemented Pusher and web sockets for live chat and player movement.",
+            "Designed an algorithm to randomly generate and connect any specified amount of rooms in the game world."
+        ]
     },
     {
         "name": "Empowered Conversation",
@@ -97,6 +130,11 @@
             "empoweredconversation5.png"
         ],
         "imageQuery": "empoweredconversation",
-        "frequency": 1
+        "frequency": 1,
+        "bullets": [
+            "Developed a React application in coordination with 1 backend developer, 2 frontend developers, and 1 UX designer.",
+            "Implemented form validation using Formik and Yup.",
+            "Created animations using GreenSock."
+        ]
     }
 ]

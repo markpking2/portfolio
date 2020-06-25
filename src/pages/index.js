@@ -77,7 +77,7 @@ export const query = graphql`
             edges {
                 node {
                     childImageSharp {
-                        sizes(maxWidth: 500) {
+                        sizes(maxWidth: 500, quality: 100) {
                             ...GatsbyImageSharpSizes_withWebp
                         }
                     }

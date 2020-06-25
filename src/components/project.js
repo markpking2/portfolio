@@ -1,8 +1,18 @@
 import React, { useRef, useState, useLayoutEffect } from "react";
-import styled from "styled-components";
-import Img from "gatsby-image/withIEPolyfill";
-import { LinkIcon, Github } from "../assets/icons";
 import Carousel from "./carousel";
+
+import {
+    H4,
+    LinkDiv,
+    LinkSpan,
+    P,
+    ProjectContainer,
+    StyledGithub,
+    StyledImg,
+    StyledLi,
+    StyledLinkIcon,
+    StyledSpan,
+} from "../styles/project";
 
 export default ({
     sizes,
@@ -51,7 +61,7 @@ export default ({
                                 <StyledImg
                                     title={project.name}
                                     alt="Screenshot of project"
-                                    sizes={size}
+                                    fluid={size}
                                     frequency={project.frequency}
                                     objectFit="contain"
                                     width={dimensions.width}
@@ -61,16 +71,6 @@ export default ({
                     })}
                 </Carousel>
             </div>
-            <div>
-                <StyledSpan>
-                    <strong>Tech Stack: </strong>
-                </StyledSpan>
-                <H4>{project.tech}</H4>
-            </div>
-            <P>
-                <strong>Description: </strong>
-                {project.description}
-            </P>
             {project.demo && (
                 <LinkDiv>
                     <a href={project.demo}>
@@ -107,66 +107,29 @@ export default ({
                     </a>
                 </LinkDiv>
             )}
+            <div>
+                <StyledSpan>
+                    <strong>Tech Stack: </strong>
+                </StyledSpan>
+                <H4>{project.tech}</H4>
+            </div>
+            <P>
+                <strong>Description: </strong>
+                {project.description}
+            </P>
+            {project.bullets.length && (
+                <div>
+                    <StyledSpan>
+                        <strong>Responsibilities: </strong>
+                    </StyledSpan>
+
+                    <ul>
+                        {project.bullets.map((bullet) => (
+                            <StyledLi>{bullet}</StyledLi>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </ProjectContainer>
     );
 };
-
-const ProjectContainer = styled.div`
-    width: 100%;
-    margin: 1rem 0;
-`;
-
-const StyledImg = styled(Img)`
-    margin: 0;
-    width: ${({ width, frequency }) => width / frequency}px;
-    min-width: ${({ maxWidth }) => maxWidth}px;
-    max-height: 750px;
-    padding: 0 0.3rem;
-    cursor: zoom-in;
-`;
-
-const StyledLinkIcon = styled(LinkIcon)`
-    display: inline;
-    margin-left: 0.5rem;
-    fill: white;
-`;
-
-const H4 = styled.h4`
-    display: inline;
-    margin: 0 !important;
-    color: ${(props) => props.theme.primary};
-`;
-
-const P = styled.p`
-    margin-bottom: 0.2rem;
-    color: ${(props) => props.theme.primary};
-`;
-
-const StyledSpan = styled.span`
-    color: ${(props) => props.theme.primary};
-`;
-
-const LinkSpan = styled.span`
-    font-size: 1.2rem;
-    color: ${(props) => props.theme.tertiary};
-    text-shadow: none;
-`;
-
-const LinkDiv = styled.div`
-    display: flex;
-    align-items: center;
-
-    a {
-        text-decoration: none;
-        background-image: none;
-
-        &:hover {
-            opacity: 0.5;
-            cursor: pointer;
-        }
-    }
-`;
-
-const StyledGithub = styled(Github)`
-    fill: ${(props) => props.theme.primary};
-`;
