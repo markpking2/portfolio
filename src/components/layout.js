@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "gatsby";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Email, Github, Linkedin, Resume, Bucket } from "../assets/icons";
@@ -12,6 +12,7 @@ const isActive = ({ isCurrent }) => {
 };
 
 export default ({ children }) => {
+    const [touch, setTouch] = useState(false);
     const [selectedTheme, setSelectedTheme] = useState({
         ...theme,
         tertiary: theme.colors[theme.colorIndex],
@@ -48,6 +49,12 @@ export default ({ children }) => {
                     : theme.colors[theme.colorIndex + 1],
         });
     }
+
+    useEffect(() => {
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            setTouch(true);
+        }
+    }, []);
     return (
         <ThemeProvider theme={selectedTheme}>
             <GlobalStyle backgroundURL={backgroundURL} />
@@ -78,7 +85,7 @@ export default ({ children }) => {
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
             </Helmet>
-            <LayoutDiv touch={window.matchMedia("(pointer: coarse)").matches}>
+            <LayoutDiv touch={touch}>
                 <Hamburger />
                 <Content>
                     <Header>
