@@ -6,7 +6,6 @@ const typography = new Typography({
     omitGoogleFont: true,
     googleFonts: [],
 });
-console.log(typography);
 
 export const { scale, rhythm, options } = typography;
 export default typography;

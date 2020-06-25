@@ -9,15 +9,28 @@ module.exports = {
         siteUrl: "https://www.mark.codes",
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+                name: `Mark King`,
+                short_name: `Mark King`,
+                start_url: `/`,
+                background_color: `#f7f0eb`,
+                theme_color: `#a2466c`,
+                display: `standalone`,
+                icon: `src/assets/images/aussie.png`,
+            },
+        },
+        "gatsby-plugin-offline",
         "gatsby-plugin-react-helmet",
         "gatsby-plugin-styled-components",
         "gatsby-plugin-recaptcha",
-        `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
+        "gatsby-plugin-sharp",
+        "gatsby-transformer-sharp",
         {
-            resolve: `gatsby-plugin-typography`,
+            resolve: "gatsby-plugin-typography",
             options: {
-                pathToConfigModule: `src/utils/typography`,
+                pathToConfigModule: "src/utils/typography",
             },
         },
         {
@@ -29,21 +42,21 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-source-filesystem`,
+            resolve: "gatsby-source-filesystem",
             options: {
-                name: `data`,
+                name: "data",
                 path: `${__dirname}/src/data/`,
             },
         },
         {
-            resolve: `gatsby-source-filesystem`,
+            resolve: "gatsby-source-filesystem",
             options: {
                 path: `${__dirname}/src/assets/images`,
-                name: `images`,
+                name: "images",
             },
         },
         {
-            resolve: `gatsby-plugin-s3`,
+            resolve: "gatsby-plugin-s3",
             options: {
                 bucketName: "mark.codes",
                 protocol: "https",
