@@ -59,6 +59,10 @@ export default ({ data }) => {
                 <html lang="en" />
                 <meta charSet="utf-8" />
                 <title>Skills - Mark King</title>
+                <meta
+                    name="description"
+                    content="Here are some of the technologies I've used as a developer."
+                />
             </Helmet>
             <Layout>
                 <Typewriter text="Things I've used..." />

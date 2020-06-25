@@ -71,4 +71,5 @@ const StyledH3 = styled.h3`
     color: white;
     display: inline;
     color: ${(props) => props.theme.primary};
+    font-weight: 500;
 `;

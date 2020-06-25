@@ -78,7 +78,7 @@ export default ({ children }) => {
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
             </Helmet>
-            <LayoutDiv>
+            <LayoutDiv touch={window.matchMedia("(pointer: coarse)").matches}>
                 <Hamburger />
                 <Content>
                     <Header>
@@ -190,6 +190,11 @@ const GlobalStyle = createGlobalStyle`
             backgroundURL,
         }) => backgroundURL});
         background-size: cover;
+
+        a {
+            font-weight: 600;
+            text-shadow: none;
+        }
     }
 
     body {
@@ -209,7 +214,8 @@ const GlobalStyle = createGlobalStyle`
 const LayoutDiv = styled.div`
     margin: 0 auto 0 auto;
     max-width: 900px;
-    padding: 2.5rem 3rem 1rem 3rem;
+    padding: ${({ touch }) =>
+        touch ? "2.5rem 1rem 1rem 1rem" : "2.5rem 3rem 1rem 3rem"};
     border-left: 3px solid ${(props) => props.theme.tertiary};
     border-right: 3px solid ${(props) => props.theme.tertiary};
     background: ${(props) => props.theme.secondary};
@@ -226,6 +232,10 @@ const LayoutDiv = styled.div`
     @media only screen and (max-width: 900px) {
         border: none;
     }
+
+    // @media only screen and (max-width: 800px) {
+    //     bottom: 60px;
+    // }
 `;
 
 const Header = styled.header`
@@ -326,7 +336,8 @@ const Footer = styled.footer`
 `;
 
 const StyledName = styled.h1`
-    font-family: Serif;
+    font-family: "DM Serif Display", Serif;
+    font-weight: 400;
 `;
 
 const Subheading = styled.h6`
@@ -335,8 +346,8 @@ const Subheading = styled.h6`
     margin-top: 0.75rem;
     font-family: "Quattrocento Sans", sans-serif;
     font-style: italic;
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 1rem;
     margin-bottom: 0;
 `;
 
