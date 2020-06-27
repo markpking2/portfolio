@@ -16,8 +16,6 @@ export default ({ data }) => {
     const { edges: projectStaticImages } = data.StaticProjectImages;
     const { publicURL: lighthouseGif } = data.Lighthouse;
     const { publicURL: lighthouseStill } = data.LighthouseStill;
-    console.log(projectImages.map((p) => p.node.name));
-    console.log(mobileProjectImages.map((p) => p.node.name));
 
     return (
         <>

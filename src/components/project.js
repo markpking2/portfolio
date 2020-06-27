@@ -50,6 +50,7 @@ export default ({
                                         staticImages[i]?.node?.childImageSharp
                                             .fluid
                                     );
+                                    setTouched(true);
                                 }}
                                 tabIndex={0}
                                 onKeyDown={(e) => {
@@ -124,8 +125,8 @@ export default ({
                     </StyledSpan>
 
                     <ul>
-                        {project.bullets.map((bullet) => (
-                            <StyledLi>{bullet}</StyledLi>
+                        {project.bullets.map((bullet, i) => (
+                            <StyledLi key={i}>{bullet}</StyledLi>
                         ))}
                     </ul>
                 </div>
