@@ -5,8 +5,6 @@ name: Production Build
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
 jobs:
   build:
@@ -24,3 +22,20 @@ jobs:
         run: npm run build
       - name: Deploy to S3
         run: AWS_ACCESS_KEY_ID=${{ secrets.access_key_id }} AWS_SECRET_ACCESS_KEY=${{ secrets.secret_access_key }} npm run deploy
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build
+      - name: run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.4.x
+          lhci autorun
