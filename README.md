@@ -1,3 +1,5 @@
 # My portfolio site
 
-[Deployed here](https://www.mark.codes)
+[Deployed here on AWS](https://www.mark.codes)
+
+[Audited with Google Lighthouse](https://www.mark.codes/lighthouse)
