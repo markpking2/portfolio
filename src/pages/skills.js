@@ -66,33 +66,6 @@ export default ({ data }) => {
             </Helmet>
             <Layout>
                 <Typewriter text="Things I've used..." />
-                <section>
-                    <div>
-                        <StyledH3>Certifications</StyledH3>
-                    </div>
-
-                    <BadgeWrapper>
-                        <A href="https://www.youracclaim.com/badges/2fd6df00-8f74-4116-b2f6-ebb2b18c6a48/public_url">
-                            <StyledImg
-                                title={
-                                    "AWS Certified Solutions Architect Associate"
-                                }
-                                alt="AWS Certified Solutions Architect Associate Badge"
-                                sizes={saSizes}
-                            />
-                        </A>
-                    </BadgeWrapper>
-
-                    <A href="https://www.youracclaim.com/badges/aa405a9b-115f-463f-808f-623de8717ffe/public_url">
-                        <BadgeWrapper>
-                            <StyledImg
-                                title={"AWS Certified Cloud Practitioner"}
-                                alt="AWS Certified Cloud Practitioner Badge"
-                                sizes={cpSizes}
-                            />
-                        </BadgeWrapper>
-                    </A>
-                </section>
                 <SkillsSection>
                     <StyledH3>Frontend</StyledH3>
                     <SkillWrapper>
@@ -288,6 +261,33 @@ export default ({ data }) => {
                         </SkillTitle>
                     </SkillWrapper>
                 </SkillsSection>
+                <section>
+                    <div>
+                        <StyledH3>Certifications</StyledH3>
+                    </div>
+
+                    <BadgeWrapper>
+                        <A href="https://www.youracclaim.com/badges/2fd6df00-8f74-4116-b2f6-ebb2b18c6a48/public_url">
+                            <StyledImg
+                                title={
+                                    "AWS Certified Solutions Architect Associate"
+                                }
+                                alt="AWS Certified Solutions Architect Associate Badge"
+                                sizes={saSizes}
+                            />
+                        </A>
+                    </BadgeWrapper>
+
+                    <A href="https://www.youracclaim.com/badges/aa405a9b-115f-463f-808f-623de8717ffe/public_url">
+                        <BadgeWrapper>
+                            <StyledImg
+                                title={"AWS Certified Cloud Practitioner"}
+                                alt="AWS Certified Cloud Practitioner Badge"
+                                sizes={cpSizes}
+                            />
+                        </BadgeWrapper>
+                    </A>
+                </section>
             </Layout>
         </>
     );

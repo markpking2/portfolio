@@ -9,7 +9,7 @@ import { graphql } from "gatsby";
 export default ({ data }) => {
     const [image] = data.Image.edges;
     const {
-        childImageSharp: { sizes },
+        childImageSharp: { fluid },
     } = image.node;
 
     return (
@@ -63,7 +63,7 @@ export default ({ data }) => {
                     <StyledImg
                         title={"Mark and his two dogs"}
                         alt="Mark and his two dogs"
-                        sizes={sizes}
+                        fluid={fluid}
                     />
                 </ImgWrapper>
             </Layout>
@@ -76,9 +76,15 @@ export const query = graphql`
         Image: allFile(filter: { relativePath: { regex: "/boat_dogs.png/" } }) {
             edges {
                 node {
+                    relativePath
+                    name
                     childImageSharp {
-                        sizes(maxWidth: 500, quality: 100) {
-                            ...GatsbyImageSharpSizes_withWebp
+                        fluid(
+                            maxWidth: 500
+                            quality: 100
+                            srcSetBreakpoints: [500, 400, 300, 200]
+                        ) {
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
@@ -96,7 +102,9 @@ const StyledImg = styled(Img)`
     max-width: 475px;
     margin: 0;
     padding: 0 0.3rem;
+    // border: 4px solid ${(props) => props.theme.tertiary};
     border-radius: 10px;
+    box-shadow: 0px 0px 20px 2px ${(props) => props.theme.tertiary};
 `;
 
 const ImgWrapper = styled.div`

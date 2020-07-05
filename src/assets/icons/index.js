@@ -7,10 +7,12 @@ import ArrowRight from "./arrowright.svg";
 import LinkIcon from "./link.svg";
 import Touch from "./touch.svg";
 import Bucket from "./bucket.svg";
+import Lighthouse from "./lighthouse.svg";
 
 export {
     Email,
     Github,
+    Lighthouse,
     Linkedin,
     Resume,
     ArrowLeft,

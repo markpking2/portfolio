@@ -2,6 +2,7 @@ import React, { useRef, useState, useLayoutEffect } from "react";
 import Carousel from "./carousel";
 
 import {
+    CarouselWrapper,
     H4,
     LinkDiv,
     LinkSpan,
@@ -33,45 +34,47 @@ export default ({
     return (
         <ProjectContainer>
             <h2>{project.name}</h2>
-            <div ref={ref}>
-                <Carousel
-                    top={dimensions.height / 2 - 22}
-                    left={55}
-                    right={55}
-                    touched={touched}
-                    setTouched={setTouched}
-                >
-                    {sizes.map((size, i) => {
-                        return (
-                            <div
-                                role="button"
-                                onClick={() => {
-                                    setViewedImage(
-                                        staticImages[i]?.node?.childImageSharp
-                                            .fluid
-                                    );
-                                    setTouched(true);
-                                }}
-                                tabIndex={0}
-                                onKeyDown={(e) => {
-                                    e.preventDefault();
-                                    setViewedImage(null);
-                                }}
-                                key={i}
-                            >
-                                <StyledImg
-                                    title={project.name}
-                                    alt="Screenshot of project"
-                                    fluid={size}
-                                    frequency={project.frequency}
-                                    objectFit="contain"
-                                    width={dimensions.width}
-                                />
-                            </div>
-                        );
-                    })}
-                </Carousel>
-            </div>
+            <CarouselWrapper>
+                <div style={{ background: "rgba(76, 175, 80, 0)" }} ref={ref}>
+                    <Carousel
+                        top={dimensions.height / 2 - 22}
+                        left={55}
+                        right={55}
+                        touched={touched}
+                        setTouched={setTouched}
+                    >
+                        {sizes.map((size, i) => {
+                            return (
+                                <div
+                                    role="button"
+                                    onClick={() => {
+                                        setViewedImage(
+                                            staticImages[i]?.node
+                                                ?.childImageSharp.fluid
+                                        );
+                                        setTouched(true);
+                                    }}
+                                    tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        e.preventDefault();
+                                        setViewedImage(null);
+                                    }}
+                                    key={i}
+                                >
+                                    <StyledImg
+                                        title={project.name}
+                                        alt="Screenshot of project"
+                                        fluid={size}
+                                        frequency={project.frequency}
+                                        objectFit="contain"
+                                        width={dimensions.width}
+                                    />
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                </div>
+            </CarouselWrapper>
             {project.demo && (
                 <LinkDiv>
                     <a href={project.demo}>
