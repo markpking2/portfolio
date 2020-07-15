@@ -11,7 +11,7 @@ const isActive = ({ isCurrent }) => {
     return isCurrent ? { className: "active" } : {};
 };
 
-export default ({ children }) => {
+export default ({ children, widthoverride }) => {
     const [touch, setTouch] = useState(false);
     const [selectedTheme, setSelectedTheme] = useState({
         ...theme,
@@ -51,132 +51,149 @@ export default ({ children }) => {
     }
 
     useEffect(() => {
-        if (window.matchMedia("(pointer: coarse)").matches) {
-            setTouch(true);
+        let cancelled = false;
+
+        if (!cancelled) {
+            if (window.matchMedia("(pointer: coarse)").matches) {
+                setTouch(true);
+            }
         }
+
+        return () => {
+            cancelled = true;
+        };
     }, []);
     return (
-        <ThemeProvider theme={selectedTheme}>
-            <GlobalStyle backgroundURL={backgroundURL} />
-            <Helmet>
-                <link
-                    rel="apple-touch-icon"
-                    sizes="180x180"
-                    href="/apple-touch-icon.png"
+        <>
+            <ThemeProvider theme={selectedTheme}>
+                <GlobalStyle
+                    backgroundURL={backgroundURL}
+                    selectedTheme={selectedTheme}
                 />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="32x32"
-                    href="/favicon-32x32.png"
-                />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="16x16"
-                    href="/favicon-16x16.png"
-                />
-                <link rel="manifest" href="/site.webmanifest" />
-                <link
-                    rel="mask-icon"
-                    href="/safari-pinned-tab.svg"
-                    color="#5bbad5"
-                />
-                <meta name="msapplication-TileColor" content="#da532c" />
-                <meta name="theme-color" content="#ffffff" />
-            </Helmet>
-            <LayoutDiv touch={touch}>
-                <Hamburger />
-                <Content>
-                    <Header>
-                        <NameWrapper>
-                            <StyledLink to="/">
-                                <StyledName>Mark King</StyledName>
-                                <SubheadingWrapper>
-                                    <Subheading>
-                                        Highly adaptable full stack engineer
-                                        with a passion for developing fast and
-                                        scalable web applications.
-                                    </Subheading>
-                                </SubheadingWrapper>
-                            </StyledLink>
-                        </NameWrapper>
-                        <Icons>
-                            <li>
-                                <StyledLink
-                                    id="resume"
-                                    to="/resume"
-                                    title="Resume"
-                                >
-                                    <StyledResume />
+                <Helmet>
+                    <link
+                        rel="apple-touch-icon"
+                        sizes="180x180"
+                        href="/apple-touch-icon.png"
+                    />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        sizes="32x32"
+                        href="/favicon-32x32.png"
+                    />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        sizes="16x16"
+                        href="/favicon-16x16.png"
+                    />
+                    <link rel="manifest" href="/site.webmanifest" />
+                    <link
+                        rel="mask-icon"
+                        href="/safari-pinned-tab.svg"
+                        color="#5bbad5"
+                    />
+                    <meta name="msapplication-TileColor" content="#da532c" />
+                    <meta name="theme-color" content="#ffffff" />
+                </Helmet>
+                <LayoutDiv widthoverride={widthoverride} touch={touch}>
+                    <Hamburger />
+                    <Content>
+                        <Header>
+                            <NameWrapper>
+                                <StyledLink to="/">
+                                    <StyledName style={{ display: "inline" }}>
+                                        Mark King
+                                    </StyledName>
+                                    <SubheadingWrapper>
+                                        <Subheading>
+                                            Highly adaptable full stack engineer
+                                            with a passion for developing fast
+                                            and scalable web applications.
+                                        </Subheading>
+                                    </SubheadingWrapper>
                                 </StyledLink>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://github.com/markpkng"
-                                    title="Mark's GitHub"
-                                >
-                                    <StyledGithub textDecoration="none" />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://linkedin.com/in/markpking"
-                                    title="Mark's LinkedIn"
-                                >
-                                    <StyledLinkedin />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="mailto:markpking2@gmail.com"
-                                    title="Mark's Email"
-                                >
-                                    <StyledEmail fill={theme.primary} />
-                                </a>
-                            </li>
-                        </Icons>
-
-                        <Links>
-                            <StyledLink to="/" getProps={isActive}>
-                                About
-                            </StyledLink>
-                            <StyledLink to="/projects/" getProps={isActive}>
-                                Projects
-                            </StyledLink>
-                            <StyledLink to="/skills/" getProps={isActive}>
-                                Skills
-                            </StyledLink>
-                            <StyledLink to="/contact/" getProps={isActive}>
-                                Contact
-                            </StyledLink>
-                            <StyledLink to="/resume" getProps={isActive}>
-                                Resume
-                            </StyledLink>
-                        </Links>
-                    </Header>
-                    {children}
-                </Content>
-                <Footer>
-                    <span>&copy; Mark King 2020</span>
-                    <br />
-                    <span>
-                        Developed with GatsbyJS in{" "}
-                        <span role="img" aria-label="palm tree emoji">
-                            🌴
-                        </span>{" "}
-                        Florida, US. Hosted on AWS S3.
-                    </span>
-                    <BucketWrapper
-                        onClick={() => {
-                            colorChange();
-                        }}
-                    >
-                        <StyledBucket />
-                    </BucketWrapper>
-                </Footer>
-            </LayoutDiv>
-        </ThemeProvider>
+                            </NameWrapper>
+                            <Icons>
+                                <li>
+                                    <StyledLink
+                                        id="resume"
+                                        to="/resume"
+                                        title="Resume"
+                                    >
+                                        <StyledResume />
+                                    </StyledLink>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://github.com/markpkng"
+                                        title="Mark's GitHub"
+                                    >
+                                        <StyledGithub textDecoration="none" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://linkedin.com/in/markpking"
+                                        title="Mark's LinkedIn"
+                                    >
+                                        <StyledLinkedin />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="mailto:markpking2@gmail.com"
+                                        title="Mark's Email"
+                                    >
+                                        <StyledEmail fill={theme.primary} />
+                                    </a>
+                                </li>
+                            </Icons>
+                            <Links>
+                                <StyledHr touch={touch} />
+                                <StyledLink to="/" getProps={isActive}>
+                                    About
+                                </StyledLink>
+                                <StyledLink to="/projects/" getProps={isActive}>
+                                    Projects
+                                </StyledLink>
+                                <StyledLink to="/skills/" getProps={isActive}>
+                                    Skills
+                                </StyledLink>
+                                <StyledLink to="/contact/" getProps={isActive}>
+                                    Contact
+                                </StyledLink>
+                                <StyledLink to="/resume">Resume</StyledLink>
+                                <StyledLink to="/blog" getProps={isActive}>
+                                    Blog
+                                </StyledLink>
+                                <StyledHr touch={touch} />
+                            </Links>
+                        </Header>
+                        {children}
+                    </Content>
+                    <Footer>
+                        <span>&copy; Mark King 2020</span>
+                        <br />
+                        <span>
+                            Developed with GatsbyJS in{" "}
+                            <span role="img" aria-label="palm tree emoji">
+                                🌴
+                            </span>{" "}
+                            Florida, US. Hosted on AWS S3.
+                        </span>
+                        <BucketWrapper
+                            onClick={() => {
+                                colorChange();
+                            }}
+                        >
+                            <StyledBucket />
+                        </BucketWrapper>
+                    </Footer>
+                </LayoutDiv>
+            </ThemeProvider>
+        </>
     );
 };
 
@@ -218,9 +235,35 @@ const GlobalStyle = createGlobalStyle`
   
 `;
 
+const StyledHr = styled.hr`
+    display: block;
+    border-top: 5px solid ${(props) => props.theme.tertiary};
+    margin-left: ${({ touch }) => (touch ? "-1rem" : "-3rem")};
+    margin-right: ${({ touch }) => (touch ? "-1rem" : "-3rem")};
+    margin-top: 1rem;
+`;
+
 const LayoutDiv = styled.div`
+    pre {
+        overflow: auto;
+        background: #f6f8fa;
+    }
+    code {
+        color: black;
+        background: #f6f8fa;
+    }
+
+    a {
+        color: ${(props) => props.theme.tertiary};
+        background: none;
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+    color: white;
     margin: 0 auto 0 auto;
-    max-width: 900px;
+    max-width: ${({ widthoverride }) =>
+        widthoverride ? widthoverride : "900px"};
     padding: ${({ touch }) =>
         touch ? "2.5rem 1rem 1rem 1rem" : "2.5rem 3rem 1rem 3rem"};
     border-left: 3px solid ${(props) => props.theme.tertiary};
@@ -228,21 +271,17 @@ const LayoutDiv = styled.div`
     background: ${(props) => props.theme.secondary};
 
     h1,
-    h2 {
-        display: inline;
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         color: ${(props) => props.theme.primary};
-    }
-    h4 {
-        margin: 0.5rem;
     }
 
     @media only screen and (max-width: 900px) {
         border: none;
     }
-
-    // @media only screen and (max-width: 800px) {
-    //     bottom: 60px;
-    // }
 `;
 
 const Header = styled.header`
@@ -296,7 +335,7 @@ const Icons = styled.ul`
             opacity: 0.5;
         }
 
-        @media only screen and (max-width: 651px) {
+        @media only screen and (max-width: 720px) {
             width: 2.2rem;
             height: 2.2rem;
         }
@@ -304,32 +343,31 @@ const Icons = styled.ul`
 `;
 
 const Links = styled.div`
-  width: 100%;
-  margin: 0 0 1.5rem 0;
-  padding: 0;
-  font-size: 1.2rem;
-  a {
-    color: ${(props) => props.theme.tertiary};
-    &:hover {
-      opacity: 0.5;
+    width: 100%;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    font-size: 1.2rem;
+    a {
+        color: ${(props) => props.theme.tertiary};
+        &:hover {
+            opacity: 0.5;
+        }
     }
-    }
-  }
-  .active {
-      font-size: 1.5rem;
-      color: ${(props) => props.theme.primary};
-      background: none;
-      text-shadow: none;
-      font-family: "Work Sans",sans-serif;
-      pointer-events: none;
+    .active {
+        font-size: 1.5rem;
+        color: ${(props) => props.theme.primary};
+        background: none;
+        text-shadow: none;
+        font-family: "Work Sans", sans-serif;
+        pointer-events: none;
 
-      &:hover {
-          opacity: 1
-      }
-  }
-  @media only screen and (max-width: 650px) {
-    display: none;
-  }
+        &:hover {
+            opacity: 1;
+        }
+    }
+    @media only screen and (max-width: 720px) {
+        display: none;
+    }
 `;
 const Content = styled.div`
     min-height: calc(100vh - 125px);

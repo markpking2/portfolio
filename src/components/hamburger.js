@@ -43,6 +43,11 @@ export default () => {
                             <li>
                                 <Link to="/resume/">Resume</Link>
                             </li>
+                            <li>
+                                <Link to="/blog/" getProps={isActive}>
+                                    Blog
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -211,7 +216,7 @@ const MenuWrapper = styled.div`
         }
     }
 
-    @media only screen and (min-width: 651px) {
+    @media only screen and (min-width: 721px) {
         display: none;
     }
 `;

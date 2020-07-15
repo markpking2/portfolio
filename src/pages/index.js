@@ -61,8 +61,8 @@ export default ({ data }) => {
                 </P>
                 <ImgWrapper>
                     <StyledImg
-                        title={"Mark and his two dogs"}
-                        alt="Mark and his two dogs"
+                        title={"Mark's computer'"}
+                        alt="Mark's computer"
                         fluid={fluid}
                     />
                 </ImgWrapper>
@@ -73,16 +73,24 @@ export default ({ data }) => {
 
 export const query = graphql`
     query image {
-        Image: allFile(filter: { relativePath: { regex: "/boat_dogs.png/" } }) {
+        Image: allFile(filter: { relativePath: { regex: "/computer.png/" } }) {
             edges {
                 node {
                     relativePath
                     name
                     childImageSharp {
                         fluid(
-                            maxWidth: 500
+                            maxWidth: 800
                             quality: 100
-                            srcSetBreakpoints: [500, 400, 300, 200]
+                            srcSetBreakpoints: [
+                                800
+                                700
+                                600
+                                500
+                                400
+                                300
+                                200
+                            ]
                         ) {
                             ...GatsbyImageSharpFluid_withWebp
                         }
@@ -99,12 +107,10 @@ const P = styled.p`
 
 const StyledImg = styled(Img)`
     grid-row: 1 / -1;
-    max-width: 475px;
     margin: 0;
     padding: 0 0.3rem;
-    // border: 4px solid ${(props) => props.theme.tertiary};
     border-radius: 10px;
-    box-shadow: 0px 0px 20px 2px ${(props) => props.theme.tertiary};
+    filter: brightness(0.6);
 `;
 
 const ImgWrapper = styled.div`
