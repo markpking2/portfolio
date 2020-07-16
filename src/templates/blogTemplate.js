@@ -7,7 +7,7 @@ export default function Template({ data }) {
     const { frontmatter, html } = markdownRemark;
     return (
         <>
-            <Layout widthoverride="1400px">
+            <Layout widthoverride="1050px">
                 <div className="blog-post-container">
                     <div className="blog-post">
                         <h1>{frontmatter.title}</h1>

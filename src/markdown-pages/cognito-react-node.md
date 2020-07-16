@@ -4,19 +4,39 @@ date: "2020-07-15"
 title: "AWS Cognito authentication with React and a custom Node.js Express API"
 ---
 
-In this guide I am going to show you how to use Cognito for authentication with React and a Node.js Express API. By the time we are done, our app will be able to login/register on AWS with email and Google OAuth. Users will also be able to receive a confirmation email, reset their password, and change their password.
+In this guide I am going to show you how to use Cognito for authentication with React and a Node.js Express API.  By the time we are done, our app will be able to login/register on AWS with email and Google OAuth. Users will also be able to receive a confirmation email, and reset/change their password.
 
-You can view the finished project [here on GitHub.](https://github.com/markpkng/aws-cognito-node-react)
+This guide's main focus is authenticating with Cognito but If you want more in-depth guide on how to deploy the server on **Elastic Beanstalk**, I wrote one [here](https://github.com/markpkng/node-express-rds). 
 
-Our app will be deployed on Elastic Beanstalk using RDS (Amazon's Relational Database Service). It will use a custom serverless Lambda trigger function to make sure our Cognito users are synced with our server's database. In this function we will also add the user's primary database key into the identity token so our API can easily find the user's data without having to query by email.
+Our app will be deployed on Elastic Beanstalk using RDS (Amazon's Relational Database Service).  It will use a custom serverless Lambda trigger function to make sure our Cognito users are synced with our server's database.  In this function we will also add the user's primary database key into the identity token so our API can easily find the user's data without having to query by email.
 
-When a user authenticates through Cognito, AWS will issue the client a JWT (JSON Web Token). Our client app will send the token to our server, which will verify the token through AWS. Let's get started!
+When a user authenticates through Cognito, AWS will issue the client a JWT (JSON Web Token).  Our client app will send the token to our server, which will verify the token through AWS. Let's get started!
 
-## Step One: Configuring Cognito in the AWS Console and Google OAuth
+## Table of Contents
 
-First, let's create a new user pool in Cognito. Open the AWS console. In the top right, make sure you are in the correct region you want to use for your application. Navigate to **Services > Cognito **> **Manage User Pools** > **Create a user pool**.
+[Step One: Configuring Cognito in the AWS Console and Google OAuth](#step-one)
 
-Enter any name you choose for your user pool. I'll call mine cognito-react-node. We'll click **review defaults** to load a default configuration, then we'll customize our configuration as needed. On the left, click **attributes**. For this application, our users will be able to register and sign in with their email. Select the following attributes:
+[Step Two: Creating the React application](#step-two)
+
+[Part One: Init React application and create Auth functions](#part-one)
+
+[Part Two: Creating components to utilize our Auth functions](#part-two)
+
+[Step Three: Create middleware to verify the JWTs issued by Cognito from our client](#step-three)
+
+[Step Four: Configuring the rest of our server, deploying it to Elastic Beanstalk, and connecting an RDS instance](#step-four)
+
+[Step Five: Deploying our server to Elastic Beanstalk with an RDS instance](#step-five)
+
+[Step Six: Adding a custom Lambda trigger function to our Cognito user pool](#step-six)
+
+### <a id="step-one"></a>
+
+## Step One: Configuring Cognito in the AWS Console and Google OAuth 
+
+First, let's create a new user pool in Cognito. Open the AWS console. In the top right, make sure you are in the correct region you want to use for your application.  Navigate to **Services**  > **Cognito ** > **Manage User Pools** > **Create a user pool**.
+
+Enter any name you choose for your user pool.  I'll call mine cognito-react-node. We'll click **review defaults** to load a default configuration, then we'll customize our configuration as needed. On the left, click **attributes**. For this application, our users will be able to register and sign in with their email. Select the following attributes:
 
 ![attributes](https://res.cloudinary.com/markpkng/image/upload/v1594686853/cognito-react-node/attributes_buetaf.png)
 
@@ -28,7 +48,7 @@ Next we'll also keep the default **MFA and verifications** settings.
 
 ![verification](https://res.cloudinary.com/markpkng/image/upload/v1594687232/cognito-react-node/verification_v2ycig.png)
 
-Next, in **message customizations** I'm going to set the verification type to **link**, although I will also provide the code to enter a verification code later if you wish to use that method instead. We can leave the other message settings as the defaults.
+Next, in **message customizations** I'm going to set the verification type to **link**, although I will also provide the code to enter a verification code later if you wish to use that method instead. We can leave the other  message settings as the defaults.
 
 ![link verification](https://res.cloudinary.com/markpkng/image/upload/v1594687583/cognito-react-node/link_hfphbu.png)
 
@@ -42,7 +62,7 @@ Enter a name for your app client. Since we are using React for the frontend, unc
 
 Next, click **Review** and then **Create pool**.
 
-After the pool is created, on the left under **App integration**, select **Domain name**. For this guide we'll use a Amazon Cognito domain. Choose a domain name, check if it's available, then click **save changes**. Make note of the domain you just created. If you click **Go to summary** you can easily copy it. We'll need this in the next step for configuring Google OAuth.
+After the pool is created, on the left under **App integration**, select **Domain name**. For this guide we'll use a Amazon Cognito domain. Choose a domain name, check if it's available, then click **save changes**. Make note of the domain you just created.  If you click **Go to summary** you can easily copy it. We'll need this in the next step for configuring Google OAuth.
 
 We still have some more configuration to do, but before we do that lets hop over to Google's developer console and create an OAuth application to use for our user pool.
 
@@ -52,7 +72,7 @@ Navigate to the [Google API console](https://console.developers.google.com/) and
 
 Enter a name for your project, leave the location as "No organization" and click **CREATE**.
 
-Next, on the left side click **OAuth consent screen**. Select **External**, then **CREATE**. Enter a name for your application, then click **Save**.
+Next, on the left side click **OAuth consent screen**. Select **External**, then **CREATE**. Enter a name for your application, then click **Save**. 
 
 On the left, click **Credentials** > **CREATE CREDENTIALS** > **OAuth client ID**.
 
@@ -86,11 +106,15 @@ Under **OAuth 2.0**, select **Authorization code grant** and **Implicit grant** 
 
 Select **email**, **openid**, **aws.cognito.signin.user.admin**, and **profile** for **Allowed OAuth Scopes**.
 
-Click **Save changes**.
+Click **Save changes**. 
 
 Now our Cognito user pool is configured and we are ready to start coding!
 
+<a id="step-two"></a>
+
 ## Step Two: Creating the React application
+
+### <a id="part-one"></a>
 
 ### Part One: Init React application and create Auth functions.
 
@@ -167,14 +191,14 @@ Amplify.configure({
             redirectSignOut: cognitoConfig.signoutUri,
             responseType: "code",
         },
-        // storage: CustomChromeStorage
+    	// storage: CustomChromeStorage
     },
 });
 ```
 
-Notice the `// storage: CustomChromeStorage`. By default, Amplify Auth functions use and store information in localStorage. You can optionally create a custom storage class if you would like to store the tokens elsewhere. For example, Chrome extensions do not have access to localStorage. We would have to provide Amplfiy with a workaround. Below is an example of a custom storage class I wrote to use Chrome Storage instead of localStorage. Amplify will sync an in-memory storage with Chrome Storage.
+Notice the `// storage: CustomChromeStorage`. By default, Amplify Auth functions use and store information in localStorage.  You can optionally create a custom storage class if you would like to store the tokens elsewhere.  For example, Chrome extensions do not have access to localStorage.  We would have to provide Amplfiy with a workaround. Below is an example of a custom storage class I wrote to use Chrome Storage instead of localStorage.  Amplify will sync an in-memory storage with Chrome Storage.
 
-#### \* Not required. Custom Chrome Storage example:
+#### * Not required. Custom Chrome Storage example:
 
 You would import this class and pass it into the Amplify configuration.
 
@@ -320,7 +344,7 @@ async function forgotPasswordSubmit(email, code, newPassword) {
 }
 ```
 
-##### Change Password
+##### Change Password 
 
 ```javascript
 async function changePassword(oldPassword, newPassword) {
@@ -391,7 +415,7 @@ export {
 
 When we make requests to our server, we'll need to send the authenticated user's id token in the authorization headers. Let's create a helper function that returns an axios instance with our users id token already in the headers. We'll place this function inside our **utility** folder.
 
-Getting a user's id token is an asynchronous operation, but this function will allow us to use axios similarly to what we are used to without chaining requests. All we have to do is pass in the specified method and path. The base URL will be set to the URL of our API.
+Getting a user's id token is an asynchronous operation, but this function will allow us to use axios similarly to what we are used to without chaining requests.  All we have to do is pass in the specified method and path. The base URL will be set to the URL of our API.
 
 ###### src/utils/axiosWithAuth.js
 
@@ -420,22 +444,22 @@ export async function axiosWithAuth(method, path) {
 Here's an example of how we'd use this function:
 
 ```javascript
-axiosWithAuth("get", "/users")
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+axiosWithAuth('get', '/users').then(res => {
+    console.log(res)
+}).catch(err => {
+    console.log(err)
+})
 ```
 
 This would send a **GET** request to `http://localhost:5000/users`.
+
+<a id="part-two"></a>
 
 ### Part Two: Creating components to utilize our Auth functions.
 
 Now it's time to start creating some components so we can put all our functions into action!
 
-Create a folder called **components** in the **src** directory. Inside this folder create a file called **authHub.js** and another folder called **auth**. We will create individual components for each of the authorization operations our app will use and store them in the **auth** folder. We'll import them into our **authHub.js** component so we can test them out. The state in our **authHub** component will keep track of the current user. It will also use Amplify's local eventing system called **Hub** to listen for authentication events.
+Create a folder called **components** in the **src** directory. Inside this folder create a file called **authHub.js** and another folder called **auth**.  We will create individual components for each of the authorization operations our app will use and store them in the **auth** folder.   We'll import them into our **authHub.js** component so we can test them out.  The state in our **authHub** component will keep track of the current user. It will also use Amplify's local eventing system called **Hub** to listen for authentication events.
 
 First we'll create the auth components.
 
@@ -800,7 +824,7 @@ import {
 
 export default function AuthHub() {
     const [currentUser, setCurrentUser] = useState(null);
-
+    
     useEffect(() => {
             Hub.listen("auth", ({ payload: { event, data } }) => {
                 switch (event) {
@@ -838,7 +862,7 @@ Our **Hub** listener will emit an **event** each time an authentication action i
 
 When our user signs in, it will store the user object in state.
 
-Finally, we'll lay out our components so we can test them out. We'll use conditional rendering to hide or show components based on the state of our authenticated user.
+Finally, we'll lay out our components so we can test them out.  We'll use conditional rendering to hide or show components based on the state of our authenticated user.
 
 ###### src/components/authHub.js
 
@@ -949,6 +973,8 @@ Your app should look like this:
 
 You should now be able login/register with email/Google and use all of the awesome functions we implemented. Now let's create the Node.js Express API to authenticate with our client/Cognito.
 
+<a id="step-three"></a>
+
 ## Step Three: Create middleware to verify the JWTs issued by Cognito from our client
 
 Let's init our server project. Open up a terminal, CD into the new project folder and `npm init -y` .
@@ -961,7 +987,7 @@ Install dependencies: `npm i axios cors express jsonwebtoken jwk-to-pem knex kne
 
 Install dev dependencies: `npm i -D nodemon sqlite3`
 
-Create a new folder called **config** and add a **cognitoConfig.json** file. It's similar to the one we created for our React application, but it doesn't need all of the values. Mine looks like:
+Create a new folder called **config** and add a **cognitoConfig.json** file.  It's similar to the one we created for our React application, but it doesn't need all of the values. Mine looks like:
 
 ```json
 {
@@ -979,7 +1005,7 @@ Create a new folder called **config** and add a **cognitoConfig.json** file. It'
 }
 ```
 
-Next, create a folder called **middleware** and add a file called **cognitoAuth.js**. It will be the authentication middleware our server uses for all our protected endpoints.
+Next, create a folder called **middleware** and add a file called **cognitoAuth.js**.  It will be the authentication middleware our server uses for all our protected endpoints.
 
 Import **cognitoConfig.json** and necessary dependencies.
 
@@ -990,11 +1016,11 @@ const jwkToPem = require("jwk-to-pem");
 const jwt = require("jsonwebtoken");
 ```
 
-Our server will need to download the **JWKs (JSON Web Keys)** for our Cognito user pool. This is public information and can be downloaded from:
+Our server will need to download the **JWKs (JSON Web Keys)** for our Cognito user pool.  This is public information and can be downloaded from:
 
 `https://cognito-idp.<YOUR_USER_POOLS_REGION>.amazonaws.com/<USER_POOL_ID>/.well-known/jwks.json`
 
-When our server first starts, we'll convert the JWKs to **PEM (Public Enhanced Mail)** format. Our middleware will need to use the information stored in these keys to authorize actions against our server. We'll send a **GET** request to the JWKs URL above and then use the library [jwk-to-pem](https://www.npmjs.com/package/jwk-to-pem) to convert the JWKs to PEMs. Then throughout our middleware function we will use the [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) library to decode and verify that the JWT's sent to our server are valid and came from Cognito.
+When our server first starts, we'll convert the JWKs to **PEM (Public Enhanced Mail)** format. Our middleware will need to use the information stored in these keys to authorize actions against our server.  We'll send a **GET** request to the JWKs URL above and then use the library [jwk-to-pem](https://www.npmjs.com/package/jwk-to-pem) to convert the JWKs to PEMs.  Then throughout our middleware function we will use the [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) library to decode and verify that the JWT's sent to our server are valid and came from Cognito.
 
 Lets store our **JWKs** URL in a variable.
 
@@ -1008,7 +1034,7 @@ We'll create a custom class called **AuthErr** that extends **Error**.
 class AuthErr extends Error {}
 ```
 
-We'll use this class to throw Authentication errors. Whenever an Authentication error is thrown we can respond to requests with a **401 Unauthorized status code**. We can check if an error is of the type **AuthErr** by using:
+We'll use this class to throw Authentication errors.  Whenever an Authentication error is thrown we can respond to requests with a **401 Unauthorized status code**. We can check if an error is of the type **AuthErr** by using:
 
 ```javascript
 instanceof AuthErr
@@ -1035,7 +1061,7 @@ async function getPems() {
 }
 ```
 
-When we send a **GET** request to the the URL stored in **JWKS_URL**, we'll get back an array of **JWKs**. For each key in the array we'll convert the key to **PEM** format and add it to an object called **pems** which is what our function will return.
+When we send a **GET** request to the the URL stored in **JWKS_URL**, we'll get back an array of **JWKs**.  For each key in the array we'll convert the key to **PEM** format and add it to an object called **pems** which is what our function will return.
 
 Next we'll create a function that verifies the **JWTs** sent in the authorization headers.
 
@@ -1133,25 +1159,26 @@ exports.getCognitoMiddleware = () => (req, res, next) => {
         }
     })();
 };
+
 ```
 
-It's common practice to prefix tokens in Authorization headers with **"Bearer"**. We'll remove this prefix to get the actual token string.
+It's common practice to prefix tokens in Authorization headers with **"Bearer"**.  We'll remove this prefix to get the actual token string.
 
-We'll then decode the **JWT** using the **.decode()** method. Passing in the `{complete: true}` option to **.decode()** gets the token's decoded payload and header.
+We'll then decode the **JWT** using the **.decode()** method.  Passing in the `{complete: true}` option to **.decode()** gets the token's decoded payload and header.  
 
-A **KID (Key Id)** header is an optional header that specifies the key used to validate the signature of the **JWT**. We'll check this value against our **PEM** keys and throw an error if the **KID** isn't found.
+A **KID (Key Id)** header is an optional header that specifies the key used to validate the signature of the **JWT**.  We'll check this value against our **PEM** keys and throw an error if the **KID** isn't found.
 
-If the **JWT** gets decoded without errors, it means it hasn't been altered. This does not mean the token's signature is valid. To verify the token's signature, we'll use the **jsonwebtoken** library **.verify()** method.
+If the **JWT** gets decoded without errors, it means it hasn't been altered. This does not mean the token's signature is valid.  To verify the token's signature, we'll use the  **jsonwebtoken** library **.verify()** method. 
 
-The **.verify()** method takes in the token as the first argument, a public key, an options object, and a callback function. The callback function is called with the decoded token or an error.
+The **.verify()** method takes in the token as the first argument, a public key, an options object, and a callback function.  The callback function is called with the decoded token or an error.
 
 Cognito issues three types of tokens: **access tokens**, **id tokens**, and **refresh tokens**. We'll check the decoded token's **token_use** value to make sure it's only an access token or an id token.
 
-Next, we'll check compare the token's **aud** or **client_id** value to our Cognito client id. The token has an **aud** or a **client_id** depending if it's an access token or an id token. The verify function will return our decoded token if it makes it through our verify function without any errors being thrown. We'll then store any useful claims in **req.user**, and then call **next()** to exit our middleware and continue our request. Finally the middleware function is exported so it can be used by the API.
+Next, we'll check compare the token's **aud** or **client_id** value to our Cognito client id.  The token has an **aud** or a **client_id** depending if it's an access token or an id token. The verify function will return our decoded token if it makes it through our verify function without any errors being thrown.  We'll then store any useful claims in **req.user**, and then call **next()** to exit our middleware and continue our request. Finally the middleware function is exported so it can be used by the API.
+
+<a id="step-four"></a>
 
 ## Step Four: Configuring the rest of our server, deploying it to Elastic Beanstalk, and connecting an RDS instance
-
-This guide's main focus is authenticating with Cognito but If you want more in-depth guide on how to deploy the server on **Elastic Beanstalk**, I wrote one [here](https://github.com/markpkng/node-express-rds). The deployment and RDS configuration with Knex is very similar.
 
 In the root of our server project, create a **Procfile** file with the following:
 
@@ -1159,15 +1186,15 @@ In the root of our server project, create a **Procfile** file with the following
 web: npm start
 ```
 
-In the root of the server folder, create a folder called **data** and inside it add a **dbConfig.js** file. Add the following:
+In the root of the server folder, create a folder called **data** and inside it add a **dbConfig.js** file.  Add the following:
 
-```javascript
+ ```javascript
 const knex = require("knex");
 const config = require("../knexfile.js");
 const dbEnv = process.env.DB_ENV || "development";
 
 module.exports = knex(config[dbEnv]);
-```
+ ```
 
 In the root of the server folder, create another folder called **scripts**. Add a file called **knex.sh** with the following:
 
@@ -1260,16 +1287,14 @@ Using **knex cli** or **npx** run `knex migrate:make users`
 Update the migration file in `./data/migrations` with the following:
 
 ```javascript
-exports.up = function(knex) {
+exports.up = function (knex) {
     return knex.schema.createTable("users", (tbl) => {
         tbl.increments();
-        tbl.varchar("email", 255)
-            .notNullable()
-            .unique();
+        tbl.varchar("email", 255).notNullable().unique();
     });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
     return knex.schema.dropTableIfExists("users");
 };
 ```
@@ -1281,7 +1306,7 @@ In `./data/seeds` update **00-cleaner.js** with the following:
 ```javascript
 const cleaner = require("knex-cleaner");
 
-exports.seed = function(knex) {
+exports.seed = function (knex) {
     return cleaner.clean(knex, {
         mode: "truncate",
         ignoreTables: ["knex_migrations", "knex_migrations_lock"],
@@ -1292,7 +1317,7 @@ exports.seed = function(knex) {
 In `./data/seeds` update **01-users.js** with the following to add initial test users to our database:
 
 ```javascript
-exports.seed = function(knex) {
+exports.seed = function (knex) {
     return knex("users").insert(
         [
             { email: "testuser1@test.com" },
@@ -1372,7 +1397,7 @@ In the root directory of the React app run `npm start`.
 
 In the root directory of the server run `npm run dev`
 
-If we try to get users without being logged in, our app will throw an error before it sends a request to our server. This is because our **axiosWithAuth** function calls **getIdToken()** from **cognitoAuth.js** which requires a user to be logged in.
+If we try to get users without being logged in, our app will throw an error before it sends a request to our server.  This is because our **axiosWithAuth** function calls **getIdToken()** from **cognitoAuth.js** which requires a user to be logged in.
 
 ![get users not logged in](https://res.cloudinary.com/markpkng/image/upload/v1594763004/cognito-react-node/get_users_not_signed_in_qzv5il.png)
 
@@ -1389,11 +1414,11 @@ Authorization: 'Bearer this_should_not_work',
 
 ![invalid token get users](https://res.cloudinary.com/markpkng/image/upload/v1594763463/cognito-react-node/get_users_unauthorized_itlfwk.png)
 
-Great! Our server responded with a **401 Unauthorized error** when we sent an invalid token. Change the **axiosWithAuth** back to what it was earlier. Now it's time to deploy our server onto **Elastic Beanstalk** and add an **RDS** instance. After that we will create a custom **Lambda** trigger function that will run whenever Cognito generates a token. The first time a user logs in, it will add the user to the server's RDS database and insert the user's database id to the identity token's payload.
+Great! Our server responded with a **401 Unauthorized error** when we sent an invalid token. Change the **axiosWithAuth** back to what it was earlier. Now it's time to deploy our server onto **Elastic Beanstalk** and add an **RDS** instance.  After that we will create a custom **Lambda** trigger function that will run whenever Cognito generates a token.  The first time a user logs in, it will add the user to the server's RDS database and insert the user's database id to the identity token's payload.
+
+<a id="step-five"></a>
 
 ## Step Five: Deploying our server to Elastic Beanstalk with an RDS instance
-
-Remember: If you aren't familiar with deploying a Node.js server to **Elastic Beanstalk**, I wrote a more detailed guide [here](https://github.com/markpkng/node-express-rds).
 
 Navigate to the **AWS console** and go to **Services** > **Elastic Beanstalk**. Enter a name for your server, select **Node.js** for the platform, **version 12** for the platform branch, and use the recommended platform version. For **Application code** select **Sample application**, then **Create application**.
 
@@ -1403,17 +1428,19 @@ After the environment is done updating, go to **Configuration** > **Database** >
 
 While the **RDS** instance is being added, upload your server to **GitHub**.
 
-Next we'll create a **CodePipeline**. Go to **Services** > **CodePipeline** > **Create pipeline**.
+Next we'll create a **CodePipeline**.  Go to **Services** > **CodePipeline** > **Create pipeline**.
 
 Enter a name for your pipeline and click **Next**. Select **GitHub** as the **Source provider**. Click **Connect to GitHub**, then select the repository for your server and choose the **master** branch. Leave **GitHub webhooks** selected, and click **Next** > **Skip build stage**.
 
-For the deploy provider select **Elastic Beanstalk**. Select the **Elastic Beanstalk** application and environment you created earlier and click **Next** > **Create pipeline**. Your server should thenautomatically deploy from **GitHub**. After it's finished you should be able to access your deployed server.
+For the deploy provider select **Elastic Beanstalk**. Select the **Elastic Beanstalk** application and environment you created earlier and click **Next** > **Create pipeline**. Your server should thenautomatically deploy from **GitHub**.  After it's finished you should be able to access your deployed server.
 
 ![deployed server](https://res.cloudinary.com/markpkng/image/upload/v1594767499/cognito-react-node/deployed_server_zpa6fm.png)
 
-Now that our server is running on **Elastic Beanstalk**, let's **SSH** into it and use the **knex.sh** script to run our migration and seed files.
 
-First we'll need to update the security group for our server to allow us to be able to **SSH** into it. Navigate to **Services** > **EC2**. Select your running instance, and select the **security group** under **Description**. Select the security group, then click **Actions** > **Edit inbound rules**. Click **Add rule**. Select **SSH** for the type and select **Anywhere** for the source. Click **Save rules**.
+
+Now that our server is running on **Elastic Beanstalk**, let's **SSH** into it and use the **knex.sh** script to run our migration and seed files.  
+
+First we'll need to update the security group for our server to allow us to be able to **SSH** into it. Navigate to **Services** > **EC2**. Select your running instance, and select the **security group** under **Description**. Select the security group, then click **Actions** > **Edit inbound rules**.  Click **Add rule**. Select **SSH** for the type and select **Anywhere** for the source. Click **Save rules**.
 
 If you are unfamiliar with **SSH**'ing into an AWS instance, checkout this guide [here.](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) You can also go to **Services** > **EC2**. Right click your running instance, and click **Connect**. Select **EC2 Instance Connect**. Use **root** as the username, and click **Connect**.
 
@@ -1435,7 +1462,9 @@ Now start up your React application and check to see if it can authenticate with
 
 ![its working](https://res.cloudinary.com/markpkng/image/upload/v1594768825/cognito-react-node/its_working_dbkksz.png)
 
-It's working!
+It's working! 
+
+<a id="step-six"></a>
 
 ## Step Six: Adding a custom Lambda trigger function to our Cognito user pool
 
@@ -1529,7 +1558,7 @@ exports.handler = async (event, context) => {
 };
 ```
 
-Whenever a token is issued to a user, this function will check if that user is in our database. If they aren't it will add them. Then either way it will grab the user's id and store it in the identity token as **db_user_id**.
+Whenever a token is issued to a user, this function will check if that user is in our database.  If they aren't it will add them. Then either way it will grab the user's id and store it in the identity token as **db_user_id**.
 
 Now bundle all the files in our deployment package folder into a **.zip** file called **function.zip**.
 
@@ -1547,7 +1576,7 @@ Once your function is created, open it up and in the **Function code** section, 
 
 Upload the **function.zip** file you created earlier then click **Save.**
 
-We'll need to add the environment variables for our **RDS** database. An easy way to get the values we need is to **SSH** back into our **Elastic Beanstalk** instance. Once you're in, type `cd ../../../opt/elasticbeanstalk/deployment/`.
+We'll need to add the environment variables for our **RDS** database.  An easy way to get the values we need is to **SSH** back into our **Elastic Beanstalk**  instance. Once you're in, type `cd ../../../opt/elasticbeanstalk/deployment/`.
 
 Then enter `cat env` to list the env variables that are loaded into our server. Make note of these then head back over to our **Lambda** function.
 
@@ -1569,8 +1598,8 @@ Go back to your Lambda function. Scroll down and under **VPC**, click **Edit**. 
 
 Now go to **Services** > **RDS**. Select the **RDS** instance for your server, and click on its **Security group**. Then click **Actions** > **Edit inbound rules** > **Add rule**. Select **PostgreSQL** for the type. Select **Custom** for the source, and select the security group you placed your Lambda function into earlier. Click **Save rules**.
 
-Now go to **Services** > **Cognito** and select the user pool for your application. On the left, click **Triggers**. Add the **Lambda** function you created to the **Pre Token Generation** trigger, then click **Save changes**.
+Now go to **Services** > **Cognito** and select the user pool for your application. On the left, click **Triggers**.  Add the **Lambda** function you created to the **Pre Token Generation** trigger, then click **Save changes**.
 
-Now start up your React application and log in, then get users from the server. Your email should be in the server's RDS database now! The primary key id of the user in the database will also be stored in the identity token that get's sent to the server.
+Now start up your React application and log in, then get users from the server.  Your email should be in the server's RDS database now!  The primary key id of the user in the database will also be stored in the identity token that get's sent to the server.
 
 Andddd.. that's a wrap! I hope you enjoyed this guide.
