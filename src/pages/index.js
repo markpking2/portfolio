@@ -51,8 +51,8 @@ export default ({ data }) => {
                     <span role="img" aria-label="heart emoji">
                         🧡
                     </span>{" "}
-                    to work with JavaScript and Python but I'm always excited to
-                    learn something new!
+                    working with React, Node.js, and AWS but I'm always excited
+                    to learn something new!
                 </P>
                 <P>
                     Outside of programming, you might find me reading a book, at
@@ -61,7 +61,7 @@ export default ({ data }) => {
                 </P>
                 <ImgWrapper>
                     <StyledImg
-                        title={"Mark's computer'"}
+                        title={"Mark's computersla"}
                         alt="Mark's computer"
                         fluid={fluid}
                     />

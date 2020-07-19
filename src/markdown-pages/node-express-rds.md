@@ -2,6 +2,7 @@
 slug: "/blog/node-express-rds"
 date: "2020-07-12"
 title: "Deploying a Node.js Express API onto AWS Elastic Beanstalk with RDS"
+description: "In this guide I am going to show you how to create a simple API with a database using Node.js and Express. It will use SQLite for development, and PostgreSQL for production with RDS (Amazon Relational Database Service ) on AWS Elastic Beanstalk."
 ---
 
 In this guide I am going to show you how to create a simple API with a database using Node.js and Express. It will use SQLite for development, and PostgreSQL for production with RDS (Amazon Relational Database Service ) on AWS Elastic Beanstalk.

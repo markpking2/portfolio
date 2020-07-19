@@ -1,12 +1,39 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
+import Helmet from "react-helmet";
 
 export default function Template({ data }) {
     const { markdownRemark } = data;
     const { frontmatter, html } = markdownRemark;
     return (
         <>
+            <Helmet>
+                <html lang="en" />
+                <meta charSet="utf-8" />
+                <title>{frontmatter.title} - Mark King</title>
+                <meta name="description" content={frontmatter.description} />
+                <meta
+                    property="og:image:secure_url"
+                    content="https://mark.codes/ogpImage.jpg"
+                />
+                <meta
+                    property="og:image"
+                    content="http://mark.codes/ogpImage.jpg"
+                />
+                <meta
+                    property="og:title"
+                    content={`${frontmatter.title} - Mark King`}
+                />
+                <meta
+                    property="og:description"
+                    content={frontmatter.description}
+                />
+                <meta
+                    property="og:url"
+                    content={`https://mark.codes${frontmatter.slug}`}
+                />
+            </Helmet>
             <Layout widthoverride="1050px">
                 <div className="blog-post-container">
                     <div className="blog-post">

@@ -8,7 +8,6 @@ import { graphql } from "gatsby";
 import {
     AlgorithmsIcon,
     ApolloIcon,
-    AwsIcon,
     AwsAPIGatewayIcon,
     AwsCloudfrontIcon,
     AwsLambdaIcon,
@@ -41,6 +40,11 @@ import {
     SassIcon,
     SQLIcon,
     WindowsIcon,
+    SESIcon,
+    CognitoIcon,
+    ElasticBeanstalkIcon,
+    RDSIcon,
+    IAMIcon,
 } from "../assets/skills";
 
 export default ({ data }) => {
@@ -197,10 +201,10 @@ export default ({ data }) => {
                         <div style={{ height: "50px" }} />
                         <SkillTitle>&bull; SuperTest</SkillTitle>
                     </SkillWrapper>
-                    <SkillWrapper>
-                        <StyledAwsIcon w="50px" h="50px" />
-                        <SkillTitle>Amazon Web Services</SkillTitle>
-                    </SkillWrapper>
+                </SkillsSection>
+                <SkillsSection>
+                    <StyledH3>Amazon Web Services</StyledH3>
+                    <SkillWrapper></SkillWrapper>
                     <SkillWrapper>
                         <StyledAwsAPIGatewayIcon w="50px" h="50px" />
                         <SkillTitle>AWS API Gateway</SkillTitle>
@@ -220,6 +224,26 @@ export default ({ data }) => {
                     <SkillWrapper>
                         <StyledAwsRoute53Icon w="50px" h="50px" />
                         <SkillTitle>AWS Route53</SkillTitle>
+                    </SkillWrapper>
+                    <SkillWrapper>
+                        <StyledCognitoIcon w="50px" h="50px" />
+                        <SkillTitle>AWS Cognito</SkillTitle>
+                    </SkillWrapper>
+                    <SkillWrapper>
+                        <StyledElasticBeanstalkIcon w="50px" h="50px" />
+                        <SkillTitle>AWS Elastic Beanstalk</SkillTitle>
+                    </SkillWrapper>
+                    <SkillWrapper>
+                        <StyledIAMIcon w="50px" h="50px" />
+                        <SkillTitle>AWS IAM</SkillTitle>
+                    </SkillWrapper>
+                    <SkillWrapper>
+                        <StyledRDSIcon w="50px" h="50px" />
+                        <SkillTitle>AWS RDS</SkillTitle>
+                    </SkillWrapper>
+                    <SkillWrapper>
+                        <StyledSESIcon w="50px" h="50px" />
+                        <SkillTitle>AWS SES</SkillTitle>
                     </SkillWrapper>
                     <SkillWrapper>
                         <StyledAwsS3Icon w="50px" h="50px" />
@@ -265,28 +289,29 @@ export default ({ data }) => {
                     <div>
                         <StyledH3>Certifications</StyledH3>
                     </div>
-
-                    <BadgeWrapper>
-                        <A href="https://www.youracclaim.com/badges/2fd6df00-8f74-4116-b2f6-ebb2b18c6a48/public_url">
-                            <StyledImg
-                                title={
-                                    "AWS Certified Solutions Architect Associate"
-                                }
-                                alt="AWS Certified Solutions Architect Associate Badge"
-                                sizes={saSizes}
-                            />
-                        </A>
-                    </BadgeWrapper>
-
-                    <A href="https://www.youracclaim.com/badges/aa405a9b-115f-463f-808f-623de8717ffe/public_url">
+                    <CertificationsWrapper>
                         <BadgeWrapper>
-                            <StyledImg
-                                title={"AWS Certified Cloud Practitioner"}
-                                alt="AWS Certified Cloud Practitioner Badge"
-                                sizes={cpSizes}
-                            />
+                            <A href="https://www.youracclaim.com/badges/2fd6df00-8f74-4116-b2f6-ebb2b18c6a48/public_url">
+                                <StyledImg
+                                    title={
+                                        "AWS Certified Solutions Architect Associate"
+                                    }
+                                    alt="AWS Certified Solutions Architect Associate Badge"
+                                    sizes={saSizes}
+                                />
+                            </A>
                         </BadgeWrapper>
-                    </A>
+
+                        <A href="https://www.youracclaim.com/badges/aa405a9b-115f-463f-808f-623de8717ffe/public_url">
+                            <BadgeWrapper>
+                                <StyledImg
+                                    title={"AWS Certified Cloud Practitioner"}
+                                    alt="AWS Certified Cloud Practitioner Badge"
+                                    sizes={cpSizes}
+                                />
+                            </BadgeWrapper>
+                        </A>
+                    </CertificationsWrapper>
                 </section>
             </Layout>
         </>
@@ -365,6 +390,15 @@ const SkillTitle = styled.span`
     color: white;
 `;
 
+const CertificationsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    @media only screen and (max-width: 630px) {
+        flex-direction: column;
+        align-items: center;
+    }
+`;
+
 const StyledAlgorithmsIcon = styled(AlgorithmsIcon)`
     fill: ${(props) => props.theme.tertiary};
     width: ${(props) => props.w};
@@ -377,17 +411,13 @@ const StyledApolloIcon = styled(ApolloIcon)`
     height: ${(props) => props.h};
     margin: 0.4rem;
 `;
-const StyledAwsIcon = styled(AwsIcon)`
-    fill: ${(props) => props.theme.tertiary};
-    width: ${(props) => props.w};
-    height: ${(props) => props.h};
-    margin: 0.4rem;
-`;
+
 const StyledAwsAPIGatewayIcon = styled(AwsAPIGatewayIcon)`
     fill: ${(props) => props.theme.tertiary};
     width: ${(props) => props.w};
     height: ${(props) => props.h};
     margin: 0.4rem;
+    margin-left: -0.4rem;
 `;
 const StyledAwsCloudfrontIcon = styled(AwsCloudfrontIcon)`
     fill: ${(props) => props.theme.tertiary};
@@ -571,6 +601,41 @@ const StyledSQLIcon = styled(SQLIcon)`
     margin: 0.4rem;
 `;
 const StyledWindowsIcon = styled(WindowsIcon)`
+    fill: ${(props) => props.theme.tertiary};
+    width: ${(props) => props.w};
+    height: ${(props) => props.h};
+    margin: 0.4rem;
+`;
+
+const StyledCognitoIcon = styled(CognitoIcon)`
+    fill: ${(props) => props.theme.tertiary};
+    width: ${(props) => props.w};
+    height: ${(props) => props.h};
+    margin: 0.4rem;
+`;
+
+const StyledElasticBeanstalkIcon = styled(ElasticBeanstalkIcon)`
+    fill: ${(props) => props.theme.tertiary};
+    width: ${(props) => props.w};
+    height: ${(props) => props.h};
+    margin: 0.4rem;
+`;
+
+const StyledIAMIcon = styled(IAMIcon)`
+    fill: ${(props) => props.theme.tertiary};
+    width: ${(props) => props.w};
+    height: ${(props) => props.h};
+    margin: 0.4rem;
+`;
+
+const StyledRDSIcon = styled(RDSIcon)`
+    fill: ${(props) => props.theme.tertiary};
+    width: ${(props) => props.w};
+    height: ${(props) => props.h};
+    margin: 0.4rem;
+`;
+
+const StyledSESIcon = styled(SESIcon)`
     fill: ${(props) => props.theme.tertiary};
     width: ${(props) => props.w};
     height: ${(props) => props.h};

@@ -1,6 +1,5 @@
 import AlgorithmsIcon from "./algorithms.svg";
 import ApolloIcon from "./apollo.svg";
-import AwsIcon from "./aws.svg";
 import AwsAPIGatewayIcon from "./aws-api-gateway.svg";
 import AwsCloudfrontIcon from "./aws-cloudfront.svg";
 import AwsLambdaIcon from "./aws-lambda.svg";
@@ -33,11 +32,20 @@ import SassIcon from "./sass.svg";
 import SQLIcon from "./sql.svg";
 import WindowsIcon from "./windows.svg";
 import CypressIcon from "./cypress.svg";
+import SESIcon from "./ses.svg";
+import ElasticBeanstalkIcon from "./elasticbeanstalk.svg";
+import IAMIcon from "./iam.svg";
+import RDSIcon from "./rds.svg";
+import CognitoIcon from "./cognito.svg";
 
 export {
+    SESIcon,
+    ElasticBeanstalkIcon,
+    IAMIcon,
+    RDSIcon,
+    CognitoIcon,
     AlgorithmsIcon,
     ApolloIcon,
-    AwsIcon,
     AwsAPIGatewayIcon,
     AwsCloudfrontIcon,
     AwsLambdaIcon,
