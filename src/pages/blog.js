@@ -22,7 +22,6 @@ export default ({
                     name="description"
                     content="I'm Mark King and this is my blog about full stack development."
                 />
-                <link rel="canonical" href="https://mark.codes" />
                 <meta
                     property="og:image:secure_url"
                     content="https://mark.codes/ogpImage.jpg"
