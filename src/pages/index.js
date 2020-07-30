@@ -47,12 +47,8 @@ export default ({ data }) => {
                     developers, and UX/UI designers.
                 </P>
                 <P>
-                    I{" "}
-                    <span role="img" aria-label="heart emoji">
-                        🧡
-                    </span>{" "}
-                    working with React, Node.js, and AWS but I'm always excited
-                    to learn something new!
+                    I love working with React, Node.js, and AWS but I'm always
+                    excited to learn something new!
                 </P>
                 <P>
                     Outside of programming, you might find me reading a book, at

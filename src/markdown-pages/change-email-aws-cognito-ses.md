@@ -23,15 +23,15 @@ My application uses [Knex.js](http://knexjs.org/) to connect to a **PostgreSQL**
 
 [Helper function three: sendPendingEmailVerification()](#send-pending-email-verification)
 
-[POST /request_email_change](#request-email-change)
+[POST /request\_email\_change](#request-email-change)
 
 [POST /verify_code](#verify-code)
 
-[DELETE /cancel_email_change](#cancel-email-change)
+[DELETE /cancel\_email\_change](#cancel-email-change)
 
-[POST /resend_email_verification](#resend-email-verification)
+[POST /resend\_email\_verification](#resend-email-verification)
 
-[GET /email_change_status](#email-change-status)
+[GET /email\_change\_status](#email-change-status)
 
 ### I needed to add two IAM roles to my Elastic Beanstalk instance to allow the SES and Cognito SDK
 
@@ -152,7 +152,7 @@ async function sendPendingEmailVerification(pendingEmail, code) {
 
 <a id="request-email-change"></a>
 
-### POST /request_email_change
+### POST /request\_email\_change
 
 This is the endpoint to initiate an email change request. If a user has a pending email change, they must cancel it first using the **cancel_email_change** endpoint. It will cause a verification email to be sent to the user's current verified email address. It will also reject a request if the new email is the same as the current email.
 
@@ -328,7 +328,7 @@ router.post("/verify_code", async (req, res) => {
 
 <a id="cancel-email-change"></a>
 
-### DELETE /cancel_email_change
+### DELETE /cancel\_email\_change
 
 This endpoint resets the fields in the database which are used for keeping track of the stages of a pending email change.
 
@@ -357,7 +357,7 @@ router.delete("/cancel_email_change", async (req, res) => {
 
 <a id="resend-email-verification"></a>
 
-### POST /resend_email_verification
+### POST /resend\_email\_verification
 
 This endpoint will send to a new verification code depending on which stage of the verification process the user is in.
 
@@ -405,7 +405,7 @@ router.post("/resend_email_verification", async (req, res) => {
 
 <a id="email-change-status"></a>
 
-### GET /email_change_status
+### GET /email\_change\_status
 
 This endpoint returns a user's requested **pending_email** and **allowed_email_change** status, which can be used on the frontend to show the user what their next step is in the changing process is.
 

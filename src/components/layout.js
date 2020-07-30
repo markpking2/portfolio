@@ -177,11 +177,8 @@ export default ({ children, widthoverride }) => {
                         <span>&copy; Mark King 2020</span>
                         <br />
                         <span>
-                            Developed with GatsbyJS in{" "}
-                            <span role="img" aria-label="palm tree emoji">
-                                🌴
-                            </span>{" "}
-                            Florida, US. Hosted on AWS S3.
+                            Developed using Gatsby in Florida, US. Hosted on
+                            AWS.
                         </span>
                         <BucketWrapper
                             onClick={() => {
