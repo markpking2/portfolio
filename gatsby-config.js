@@ -75,6 +75,7 @@ module.exports = {
                 bucketName: "mark.codes",
                 protocol: "https",
                 hostname: "www.mark.codes",
+                removeNonexistentObjects: false,
             },
         },
         {
