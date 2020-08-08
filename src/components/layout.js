@@ -33,20 +33,12 @@ export default ({ children, widthoverride }) => {
     function colorChange() {
         let tertiary;
 
-        tertiary =
-            theme.colors[
-                theme.colorIndex === 5
-                    ? (theme.colorIndex = 0)
-                    : ++theme.colorIndex
-            ];
+        tertiary = theme.colors[theme.colorIndex === 5 ? (theme.colorIndex = 0) : ++theme.colorIndex];
 
         setSelectedTheme({
             ...theme,
             tertiary,
-            after:
-                theme.colorIndex === 5
-                    ? theme.colors[0]
-                    : theme.colors[theme.colorIndex + 1],
+            after: theme.colorIndex === 5 ? theme.colors[0] : theme.colors[theme.colorIndex + 1],
         });
     }
 
@@ -63,37 +55,17 @@ export default ({ children, widthoverride }) => {
             cancelled = true;
         };
     }, []);
+
     return (
         <>
             <ThemeProvider theme={selectedTheme}>
-                <GlobalStyle
-                    backgroundURL={backgroundURL}
-                    selectedTheme={selectedTheme}
-                />
+                <GlobalStyle backgroundURL={backgroundURL} selectedTheme={selectedTheme} />
                 <Helmet>
-                    <link
-                        rel="apple-touch-icon"
-                        sizes="180x180"
-                        href="/apple-touch-icon.png"
-                    />
-                    <link
-                        rel="icon"
-                        type="image/png"
-                        sizes="32x32"
-                        href="/favicon-32x32.png"
-                    />
-                    <link
-                        rel="icon"
-                        type="image/png"
-                        sizes="16x16"
-                        href="/favicon-16x16.png"
-                    />
+                    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                     <link rel="manifest" href="/site.webmanifest" />
-                    <link
-                        rel="mask-icon"
-                        href="/safari-pinned-tab.svg"
-                        color="#5bbad5"
-                    />
+                    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
                     <meta name="msapplication-TileColor" content="#da532c" />
                     <meta name="theme-color" content="#ffffff" />
                 </Helmet>
@@ -103,49 +75,33 @@ export default ({ children, widthoverride }) => {
                         <Header>
                             <NameWrapper>
                                 <StyledLink to="/">
-                                    <StyledName style={{ display: "inline" }}>
-                                        Mark King
-                                    </StyledName>
+                                    <StyledName style={{ display: "inline" }}>Mark King</StyledName>
                                     <SubheadingWrapper>
                                         <Subheading>
-                                            Highly adaptable full stack engineer
-                                            with a passion for developing fast
-                                            and scalable web applications.
+                                            Highly adaptable full stack engineer with a passion for developing fast and
+                                            scalable web applications.
                                         </Subheading>
                                     </SubheadingWrapper>
                                 </StyledLink>
                             </NameWrapper>
                             <Icons>
                                 <li>
-                                    <StyledLink
-                                        id="resume"
-                                        to="/resume"
-                                        title="Resume"
-                                    >
+                                    <StyledLink id="resume" to="/resume" title="Resume">
                                         <StyledResume />
                                     </StyledLink>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://github.com/markpkng"
-                                        title="Mark's GitHub"
-                                    >
+                                    <a href="https://github.com/markpkng" title="Mark's GitHub">
                                         <StyledGithub textDecoration="none" />
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://linkedin.com/in/markpking"
-                                        title="Mark's LinkedIn"
-                                    >
+                                    <a href="https://linkedin.com/in/markpking" title="Mark's LinkedIn">
                                         <StyledLinkedin />
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="mailto:markpking2@gmail.com"
-                                        title="Mark's Email"
-                                    >
+                                    <a href="mailto:markpking2@gmail.com" title="Mark's Email">
                                         <StyledEmail fill={theme.primary} />
                                     </a>
                                 </li>
@@ -176,10 +132,7 @@ export default ({ children, widthoverride }) => {
                     <Footer>
                         <span>&copy; Mark King 2020</span>
                         <br />
-                        <span>
-                            Developed using Gatsby in Florida, US. Hosted on
-                            AWS.
-                        </span>
+                        <span>Developed using Gatsby in Florida, US. Hosted on AWS.</span>
                         <BucketWrapper
                             onClick={() => {
                                 colorChange();
@@ -207,9 +160,8 @@ const GlobalStyle = createGlobalStyle`
     #___gatsby {
         height: 100%;
         background-color: ${(props) => props.theme.secondary};
-        background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85) ), url(${({
-            backgroundURL,
-        }) => backgroundURL});
+        background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85) ), url(${({ backgroundURL }) =>
+            backgroundURL});
         background-size: cover;
 
         a {
@@ -259,10 +211,8 @@ const LayoutDiv = styled.div`
     }
     color: white;
     margin: 0 auto 0 auto;
-    max-width: ${({ widthoverride }) =>
-        widthoverride ? widthoverride : "900px"};
-    padding: ${({ touch }) =>
-        touch ? "2.5rem 1rem 1rem 1rem" : "2.5rem 3rem 1rem 3rem"};
+    max-width: ${({ widthoverride }) => (widthoverride ? widthoverride : "900px")};
+    padding: ${({ touch }) => (touch ? "2.5rem 1rem 1rem 1rem" : "2.5rem 3rem 1rem 3rem")};
     border-left: 3px solid ${(props) => props.theme.tertiary};
     border-right: 3px solid ${(props) => props.theme.tertiary};
     background: ${(props) => props.theme.secondary};

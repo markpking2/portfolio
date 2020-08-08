@@ -5,32 +5,32 @@ import Typewriter from "../components/typewriter";
 import Helmet from "react-helmet";
 
 export default () => (
-  <>
-    <Helmet>
-      <html lang="en" />
-      <meta charSet="utf-8" />
-      <title>Page Not Found - Mark King</title>
-    </Helmet>
-    <Layout>
-      <Typewriter text="Error: 404" />
-      <NotFoundContainer>
-        <StyledH1>
-          Uh oh!{" "}
-          <span role="img" aria-label="Sad emoji">
-            😕
-          </span>
-        </StyledH1>
-        <h2>Looks like that page doesn't exist.</h2>
-      </NotFoundContainer>
-    </Layout>
-  </>
+    <>
+        <Helmet>
+            <html lang="en" />
+            <meta charSet="utf-8" />
+            <title>Page Not Found - Mark King</title>
+        </Helmet>
+        <Layout>
+            <Typewriter text="Error: 404" />
+            <NotFoundContainer>
+                <StyledH1>
+                    Uh oh!{" "}
+                    <span role="img" aria-label="Sad emoji">
+                        😕
+                    </span>
+                </StyledH1>
+                <h2>Looks like that page doesn't exist.</h2>
+            </NotFoundContainer>
+        </Layout>
+    </>
 );
 
 const NotFoundContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 const StyledH1 = styled.h1`
-  font-size: 3rem;
+    font-size: 3rem;
 `;

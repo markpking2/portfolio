@@ -18,12 +18,7 @@ export default ({ data }) => {
         if (!recaptchaCode) {
             setRecaptchError(true);
         } else {
-            const {
-                Name: name,
-                Email: email,
-                Subject: subject,
-                Message: message,
-            } = data;
+            const { Name: name, Email: email, Subject: subject, Message: message } = data;
 
             axios
                 .post(
@@ -78,13 +73,10 @@ export default ({ data }) => {
             <Layout>
                 <Typewriter text="Let's talk!" />
                 <StyledForm onSubmit={handleSubmit(onSubmit)}>
-                    <h3 style={{ margin: "0.5rem 0" }}>
-                        Send me a message and I will get back to you ASAP.
-                    </h3>
+                    <h3 style={{ margin: "0.5rem 0" }}>Send me a message and I will get back to you ASAP.</h3>
                     {responseMessage === "success" && (
                         <StyledH3>
-                            Message sent successfully. I will get back in touch
-                            with you soon!{" "}
+                            Message sent successfully. I will get back in touch with you soon!{" "}
                             <span role="img" aria-label="Sad emoji">
                                 ✔️
                             </span>
@@ -123,9 +115,7 @@ export default ({ data }) => {
                         />
                         {errors.Email && (
                             <span>
-                                {errors.Email.type === "required"
-                                    ? "This field is required."
-                                    : "Invalid email format."}
+                                {errors.Email.type === "required" ? "This field is required." : "Invalid email format."}
                             </span>
                         )}
                     </InputWrapper>
@@ -164,9 +154,7 @@ export default ({ data }) => {
                                 onChange={onChange}
                             />
                         </div>
-                        {recaptchaError && (
-                            <span>Please verify that you are not a robot.</span>
-                        )}
+                        {recaptchaError && <span>Please verify that you are not a robot.</span>}
                     </ReCaptchaWrapper>
                     <button>Submit</button>
                 </StyledForm>
@@ -176,29 +164,29 @@ export default ({ data }) => {
 };
 
 const StyledForm = styled.form`
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 700px;
-
-  h3 {
-    color: ${(props) => props.theme.primary};
-  }
-
-  button {
-    margin: 1rem 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    max-width: 200px;
-    border-radius: 5px;
-    color: ${(props) => props.theme.primary};
-    border-width: 5px;
-    border-style-solid;
-    border-color: ${(props) => props.theme.tertiary};
-    background: transparent;
-    text-decoration: none;
-  }
+    max-width: 700px;
+
+    h3 {
+        color: ${(props) => props.theme.primary};
+    }
+
+    button {
+        margin: 1rem 0;
+        width: 100%;
+        max-width: 200px;
+        border-radius: 5px;
+        color: ${(props) => props.theme.primary};
+        border-width: 5px;
+        border-style: solid;
+        border-color: ${(props) => props.theme.tertiary};
+        background: transparent;
+        text-decoration: none;
+    }
 `;
 
 const InputWrapper = styled.div`
