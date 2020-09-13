@@ -35,7 +35,7 @@ When a user authenticates through Cognito, AWS will issue the client a JWT (JSON
 
 ## Step One: Configuring Cognito in the AWS Console and Google OAuth
 
-First, let's create a new user pool in Cognito. Open the AWS console. In the top right, make sure you are in the correct region you want to use for your application. Navigate to **Services** > **Cognito ** > **Manage User Pools** > **Create a user pool**.
+First, let's create a new user pool in Cognito. Open the AWS console. In the top right, make sure you are in the correct region you want to use for your application. Navigate to **Services** > **Cognito** > **Manage User Pools** > **Create a user pool**.
 
 Enter any name you choose for your user pool. I'll call mine cognito-react-node. We'll click **review defaults** to load a default configuration, then we'll customize our configuration as needed. On the left, click **attributes**. For this application, our users will be able to register and sign in with their email. Select the following attributes:
 
@@ -87,7 +87,7 @@ Click **CREATE**.
 
 Once the Oauth client is created, make note of the **client ID** and **client secret**. We'll need these values to configure Google Oauth in the Cognito user pool settings. Head back to over to your Cognito user pool. On the left under Federation, click **Identity providers**. Select **Google**.
 
-Enter your Google OAuth **client ID ** and **client secret**. For the **Autorized scope** enter **profile email openid**. Click **Enable Google**.
+Enter your Google OAuth **client ID** and **client secret**. For the **Autorized scope** enter **profile email openid**. Click **Enable Google**.
 
 ![google client id and secret](https://res.cloudinary.com/markpkng/image/upload/v1594689708/cognito-react-node/google_client_id_and_secret_nycyto.png)
 

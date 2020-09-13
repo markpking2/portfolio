@@ -332,7 +332,7 @@ const StyledName = styled.h1`
     font-weight: 400;
 `;
 
-const Subheading = styled.h6`
+const Subheading = styled.div`
     display: inline-block;
     color: white;
     margin-top: 0.75rem;

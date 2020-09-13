@@ -154,7 +154,7 @@ async function sendPendingEmailVerification(pendingEmail, code) {
 
 ### POST /request\_email\_change
 
-This is the endpoint to initiate an email change request. If a user has a pending email change, they must cancel it first using the **cancel_email_change** endpoint. It will cause a verification email to be sent to the user's current verified email address. It will also reject a request if the new email is the same as the current email.
+This is the endpoint to initiate an email change request. If a user has a pending email change, they must cancel it first using the **cancel\_email\_change** endpoint. It will cause a verification email to be sent to the user's current verified email address. It will also reject a request if the new email is the same as the current email.
 
 ```javascript
 router.post("/request_email_change", async (req, res) => {
@@ -211,7 +211,7 @@ router.post("/request_email_change", async (req, res) => {
 
 ### POST /verify_code
 
-This function is used to verify codes for both a user's current and pending emails. If the user's **allowed_email_change** field in the database is false, it will verify the user's current email. If the code is correct, it will send a new verification code to the user's pending email value in the database. If **allowed_email_change** is true, it will change the user's email to the new email if the verification code is correct. It will reset the fields in the database which are used for keeping track of the stages of a pending email change. It will reject a request if the user does not have a pending email change.
+This function is used to verify codes for both a user's current and pending emails. If the user's **allowed\_email\_change** field in the database is false, it will verify the user's current email. If the code is correct, it will send a new verification code to the user's pending email value in the database. If **allowed\_email\_change** is true, it will change the user's email to the new email if the verification code is correct. It will reset the fields in the database which are used for keeping track of the stages of a pending email change. It will reject a request if the user does not have a pending email change.
 
 ```javascript
 router.post("/verify_code", async (req, res) => {
@@ -407,7 +407,7 @@ router.post("/resend_email_verification", async (req, res) => {
 
 ### GET /email\_change\_status
 
-This endpoint returns a user's requested **pending_email** and **allowed_email_change** status, which can be used on the frontend to show the user what their next step is in the changing process is.
+This endpoint returns a user's requested **pending_email** and **allowed\_email\_change** status, which can be used on the frontend to show the user what their next step is in the changing process is.
 
 ```javascript
 router.get("/email_change_status", async (req, res) => {
