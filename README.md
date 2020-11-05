@@ -1,5 +1,5 @@
 # My portfolio site
 
-[Deployed here on AWS](https://www.mark.codes)
+[Deployed here on AWS](https://www.markpking2.com)
 
-[Audited with Google Lighthouse](https://www.mark.codes/lighthouse)
+[Audited with Google Lighthouse](https://www.markpking2.com/lighthouse)
